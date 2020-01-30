@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.collections.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="Ocjene.Controller.OcjeneController">
+  <children>
+    <TableView fx:id="OcjeneTab" layoutX="0.0" layoutY="6.0" prefHeight="359.0" prefWidth="371.0">
+      <columns>
+        <TableColumn prefWidth="75.0" text="Datum" fx:id="DatumCol" />
+        <TableColumn prefWidth="75.0" text="Profesor" fx:id="ProfesorCol" />
+        <TableColumn maxWidth="5000.0" minWidth="10.0" prefWidth="145.0" text="Predmet" fx:id="PredmetCol" />
+        <TableColumn prefWidth="75.0" text="Ocjena" fx:id="OcjenaCol" />
+      </columns>
+    </TableView>
+    <VBox layoutX="446.0" layoutY="0.0" prefHeight="400.0" prefWidth="153.0">
+      <children>
+        <TextField fx:id="DatumField" prefWidth="200.0">
+          <VBox.margin>
+            <Insets bottom="10.0" left="20.0" right="20.0" top="10.0" fx:id="x1" />
+          </VBox.margin>
+        </TextField>
+        <TextField fx:id="ProfesorField" prefWidth="200.0" VBox.margin="$x1" />
+        <TextField fx:id="PredmetField" prefWidth="200.0" VBox.margin="$x1" />
+        <TextField fx:id="OcjenaField" prefWidth="200.0" VBox.margin="$x1" />
+        <Button fx:id="spremiBtn" mnemonicParsing="false" onAction="#dodajOcjenu" prefWidth="153.0" text="Spremi" />
+      </children>
+    </VBox>
+    <Text layoutX="402.0" layoutY="26.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Datum" />
+    <Text layoutX="402.0" layoutY="68.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Profesor" />
+    <Text layoutX="402.0" layoutY="110.0" scaleX="1.0" scaleY="1.0000066081567769" strokeType="OUTSIDE" strokeWidth="0.0" text="Predmet" />
+    <Text layoutX="402.0" layoutY="152.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ocjena" />
+    <ChoiceBox layoutX="109.0" layoutY="365.0" prefWidth="153.0">
+      <items>
+        <FXCollections fx:factory="observableArrayList">
+          <String fx:value="Item 1" />
+          <String fx:value="Item 2" />
+          <String fx:value="Item 3" />
+        </FXCollections>
+      </items>
+    </ChoiceBox>
+    <Text layoutX="37.0" layoutY="380.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Student" />
+  </children>
+</AnchorPane>

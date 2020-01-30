@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="Ocjene.Controller.StudentController">
+  <children>
+    <BorderPane prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <center>
+        <TableView prefHeight="329.0" prefWidth="443.0">
+          <columns>
+            <TableColumn prefWidth="75.0" text="Datum" />
+            <TableColumn prefWidth="75.0" text="Predmet" />
+            <TableColumn prefWidth="75.0" text="Ocjena" />
+          </columns>
+        </TableView>
+      </center>
+      <right>
+        <VBox prefHeight="329.0" prefWidth="129.0">
+          <children>
+            <Button mnemonicParsing="false" text="Button" />
+          </children>
+        </VBox>
+      </right>
+      <top>
+        <TextArea prefHeight="71.0" prefWidth="600.0" wrapText="true" />
+      </top>
+    </BorderPane>
+  </children>
+</AnchorPane>
