@@ -61,7 +61,7 @@ public class OcjeneModel {
     }
     public void spasi () {
         Baza DB = new Baza();
-        PreparedStatement insert = DB.exec("INSERT INTO ocjene VALUES(null,?,?,?,?)");
+        PreparedStatement insert = DB.exec("INSERT INTO ocjene VALUES(null,?,?,?,?,0)");
         try {
             insert.setString(1, this.Datum.getValue());
             insert.setString(2, this.Profesor.getValue());
