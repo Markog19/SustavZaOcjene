@@ -66,9 +66,11 @@ public class LoginController implements Initializable {
                         if (id == 1) {
                             Parent root;
                             root = FXMLLoader.load(getClass().getClassLoader().getResource("Ocjene/View/Profesor.fxml"));
+
                             Stage stage = new Stage();
                             stage.setTitle("Prikaz svih studenata u Bazi podataka");
                             stage.setScene(new Scene(root, 450, 450));
+
                             stage.show();
                         } else {
 

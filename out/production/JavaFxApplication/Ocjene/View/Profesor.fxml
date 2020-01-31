@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="Ocjene.Controller.OcjeneController">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="Ocjene.Controller.ProfesorController">
   <children>
     <TableView fx:id="OcjeneTab" layoutX="0.0" layoutY="6.0" prefHeight="359.0" prefWidth="371.0">
       <columns>
@@ -36,15 +36,7 @@
     <Text layoutX="402.0" layoutY="68.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Profesor" />
     <Text layoutX="402.0" layoutY="110.0" scaleX="1.0" scaleY="1.0000066081567769" strokeType="OUTSIDE" strokeWidth="0.0" text="Predmet" />
     <Text layoutX="402.0" layoutY="152.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ocjena" />
-    <ChoiceBox layoutX="109.0" layoutY="365.0" prefWidth="153.0">
-      <items>
-        <FXCollections fx:factory="observableArrayList">
-          <String fx:value="Item 1" />
-          <String fx:value="Item 2" />
-          <String fx:value="Item 3" />
-        </FXCollections>
-      </items>
-    </ChoiceBox>
-    <Text layoutX="37.0" layoutY="380.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Student" />
+    <Text layoutX="37.0" layoutY="384.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Izaberite studenta" />
+    <TextField layoutX="171.0" layoutY="368.0" prefWidth="200.0" />
   </children>
 </AnchorPane>

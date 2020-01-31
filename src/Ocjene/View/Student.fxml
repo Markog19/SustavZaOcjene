@@ -2,31 +2,30 @@
 
 <?import java.lang.*?>
 <?import java.util.*?>
+<?import javafx.geometry.*?>
 <?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="Ocjene.Controller.StudentController">
   <children>
-    <BorderPane prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+    <BorderPane id="OcjeneTab" prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
       <center>
-        <TableView prefHeight="329.0" prefWidth="443.0">
+        <TableView fx:id="OcjeneTab" prefHeight="341.0" prefWidth="600.0">
           <columns>
-            <TableColumn prefWidth="75.0" text="Datum" />
-            <TableColumn prefWidth="75.0" text="Predmet" />
-            <TableColumn prefWidth="75.0" text="Ocjena" />
+            <TableColumn prefWidth="75.0" text="Datum" fx:id="DatumCol" />
+            <TableColumn prefWidth="75.0" text="Predmet" fx:id="PredmetCol" />
+            <TableColumn prefWidth="75.0" text="Profesor" fx:id="ProfesorCol" />
+            <TableColumn prefWidth="75.0" text="Ocjena" fx:id="OcjenaCol" />
           </columns>
         </TableView>
       </center>
-      <right>
-        <VBox prefHeight="329.0" prefWidth="129.0">
-          <children>
-            <Button mnemonicParsing="false" text="Button" />
-          </children>
-        </VBox>
-      </right>
       <top>
-        <TextArea prefHeight="71.0" prefWidth="600.0" wrapText="true" />
+        <Label fx:id="label" prefWidth="40.0" text="" textAlignment="CENTER">
+          <BorderPane.margin>
+            <Insets left="280.0" />
+          </BorderPane.margin>
+        </Label>
       </top>
     </BorderPane>
   </children>

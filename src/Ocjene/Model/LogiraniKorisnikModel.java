@@ -5,6 +5,9 @@
  */
 package Ocjene.Model;
 
+import Ocjene.Controller.StudentController;
+import javafx.fxml.FXMLLoader;
+
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
