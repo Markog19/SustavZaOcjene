@@ -47,15 +47,17 @@ public class KorisnikModel {
     }
     public void spasi () {
         Baza DB = new Baza();
-        PreparedStatement insert = DB.exec("INSERT INTO korisnik VALUES(null,?,?,?)");
+        PreparedStatement insert = DB.exec("INSERT INTO korisnik VALUES(null,?,?,?,0)");
         try {
             insert.setString(1, this.korisnickoIme.getValue());
             insert.setString(2, this.email.getValue());
             insert.setString(3, this.lozinka.getValue());
             insert.executeUpdate();
+
         } catch (SQLException ex) {
             Logger.getLogger(OcjeneModel.class.getName()).log(Level.SEVERE, null,
                     ex);
         }
+
     }
 }

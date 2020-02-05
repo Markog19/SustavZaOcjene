@@ -1,6 +1,7 @@
 package Ocjene.Controller;
 
 import Ocjene.Model.Baza;
+import Ocjene.Model.KorisnikModel;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -49,6 +50,14 @@ public class ProfesorController implements Initializable {
     TextField OcjenaField;
     @FXML
     TextField StudentField;
+    @FXML
+    TextField ImeCol;
+    @FXML
+    TextField EmailCol;
+    @FXML
+    TextField LozinkaCol;
+    @FXML
+    Button spremi;
 
     public void initialize(URL url, ResourceBundle rb) {
 
@@ -87,4 +96,14 @@ public class ProfesorController implements Initializable {
         OcjenaCol.setCellValueFactory(new PropertyValueFactory<OcjeneModel, String>("Ocjena"));
         OcjeneTab.setItems(data);
         }
+    @FXML
+        public void dodajStudenta(ActionEvent e){
+        String Ime = this.ImeCol.getText();
+        String Email = this.EmailCol.getText();
+        String Lozinka = this.LozinkaCol.getText();
+        KorisnikModel novi = new KorisnikModel(Ime, Email,Lozinka);
+        novi.spasi();
+
+
+    }
 }

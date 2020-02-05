@@ -19,7 +19,7 @@
         <TableColumn prefWidth="75.0" text="Ocjena" fx:id="OcjenaCol" />
       </columns>
     </TableView>
-    <VBox layoutX="446.0" layoutY="0.0" prefHeight="400.0" prefWidth="153.0">
+    <VBox layoutX="446.0" layoutY="0.0" prefHeight="200.0" prefWidth="153.0">
       <children>
         <TextField fx:id="DatumField" prefWidth="200.0">
           <VBox.margin>
@@ -38,5 +38,20 @@
     <Text layoutX="402.0" layoutY="152.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ocjena" />
     <Text layoutX="37.0" layoutY="384.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Izaberite studenta" />
     <TextField fx:id="StudentField" layoutX="171.0" layoutY="368.0" prefWidth="200.0" />
+    <VBox layoutX="447.0" layoutY="219.0" prefHeight="170.93408203125" prefWidth="153.0">
+      <children>
+        <TextField fx:id="ImeCol" prefWidth="200.0">
+          <VBox.margin>
+            <Insets bottom="20.0" left="20.0" right="20.0" top="10.0" fx:id="x2" />
+          </VBox.margin>
+        </TextField>
+        <TextField fx:id="EmailCol" prefWidth="200.0" VBox.margin="$x2" />
+        <TextField fx:id="LozinkaCol" prefWidth="200.0" VBox.margin="$x2" />
+        <Button fx:id="spremi" mnemonicParsing="false" onAction="#dodajStudenta" prefWidth="153.0" text="Spremi" />
+      </children>
+    </VBox>
+    <Text layoutX="410.0" layoutY="244.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ime" />
+    <Text layoutX="410.0" layoutY="286.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Email" />
+    <Text layoutX="410.0" layoutY="336.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Lozinka" />
   </children>
 </AnchorPane>
