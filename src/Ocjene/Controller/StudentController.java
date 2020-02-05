@@ -37,25 +37,21 @@ public class StudentController implements Initializable {
                 PreparedStatement bs = DB.exec("DELETE  FROM LogiraniKorisnik WHERE IDKorisnik =?");
                 bs.setInt(1,ID);
                 bs.executeUpdate();
-                PreparedStatement ps = DB.exec("SELECT * FROM ocjene WHERE IDKorisnik =?");
-                ps.setInt(1, ID);
-                ResultSet as = ps.executeQuery();
-                System.out.println("AAA" + ID);
-                while (as.next()) {
-                    System.out.println("BBB" + ID);
-                    ObservableList<OcjeneModel> data = OcjeneModel.listaOcjena();
-                    System.out.println(data);
-                    DatumCol.setCellValueFactory(new PropertyValueFactory<OcjeneModel, String>("Datum"));
-                    ProfesorCol.setCellValueFactory(new PropertyValueFactory<OcjeneModel, String>("Profesor"));
-                    PredmetCol.setCellValueFactory(new PropertyValueFactory<OcjeneModel, String>("Predmet"));
-                    OcjenaCol.setCellValueFactory(new PropertyValueFactory<OcjeneModel, String>("Ocjena"));
-                    OcjeneTab.setItems(data);
+                ObservableList<OcjeneModel> data = OcjeneModel.listaOcjena();
+                for(OcjeneModel item:data){
+                    System.out.println(item);
                 }
-            }
-
-        } catch (SQLException e) {
-            e.printStackTrace();
+                DatumCol.setCellValueFactory(new PropertyValueFactory<OcjeneModel, String>("Datum"));
+                ProfesorCol.setCellValueFactory(new PropertyValueFactory<OcjeneModel, String>("Profesor"));
+                PredmetCol.setCellValueFactory(new PropertyValueFactory<OcjeneModel, String>("Predmet"));
+                OcjenaCol.setCellValueFactory(new PropertyValueFactory<OcjeneModel, String>("Ocjena"));
+                OcjeneTab.setItems(data);
+                }
+            } catch (SQLException ex) {
+            ex.printStackTrace();
         }
+
+
 
 
 
