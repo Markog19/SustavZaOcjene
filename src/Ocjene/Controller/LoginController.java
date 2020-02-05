@@ -63,17 +63,22 @@ public class LoginController implements Initializable {
                     ResultSet rs = ps.executeQuery();
                     while (rs.next()) {
                         int id = rs.getInt("isAdmin");
+                        if(id == 0){
+                            int ID = rs.getInt("ID");
+                            PreparedStatement as = DB.exec("INSERT INTO LogiraniKorisnik VALUES(null,?,?,?)");
+                            as.setInt(1,ID);
+                            as.setString(2,kime);
+                            as.setString(3,lozinka);
+                            as.executeUpdate();
+                        }
                         if (id == 1) {
                             Parent root;
                             root = FXMLLoader.load(getClass().getClassLoader().getResource("Ocjene/View/Profesor.fxml"));
-
                             Stage stage = new Stage();
                             stage.setTitle("Prikaz svih studenata u Bazi podataka");
-                            stage.setScene(new Scene(root, 450, 450));
-
+                            stage.setScene(new Scene(root, 600, 600));
                             stage.show();
                         } else {
-
                             Parent root;
                             root = FXMLLoader.load(getClass().getClassLoader().getResource("Ocjene/View/Student.fxml"));
                             Stage stage = new Stage();

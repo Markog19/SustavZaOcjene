@@ -37,6 +37,6 @@
     <Text layoutX="402.0" layoutY="110.0" scaleX="1.0" scaleY="1.0000066081567769" strokeType="OUTSIDE" strokeWidth="0.0" text="Predmet" />
     <Text layoutX="402.0" layoutY="152.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ocjena" />
     <Text layoutX="37.0" layoutY="384.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Izaberite studenta" />
-    <TextField layoutX="171.0" layoutY="368.0" prefWidth="200.0" />
+    <TextField fx:id="StudentField" layoutX="171.0" layoutY="368.0" prefWidth="200.0" />
   </children>
 </AnchorPane>

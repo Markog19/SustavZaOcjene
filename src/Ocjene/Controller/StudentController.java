@@ -11,9 +11,13 @@ import javafx.scene.control.cell.PropertyValueFactory;
 
 import java.net.URL;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 public class StudentController implements Initializable {
+
+
     @FXML
     TableView OcjeneTab;
     @FXML
@@ -25,13 +29,39 @@ public class StudentController implements Initializable {
     @FXML
     TableColumn OcjenaCol;
     public void initialize(URL url, ResourceBundle rb ){
-        ObservableList<OcjeneModel> data = OcjeneModel.listaOcjena();
-        DatumCol.setCellValueFactory(new PropertyValueFactory<OcjeneModel, String>("Datum"));
-        ProfesorCol.setCellValueFactory(new PropertyValueFactory<OcjeneModel, String>("Profesor"));
-        PredmetCol.setCellValueFactory(new PropertyValueFactory<OcjeneModel, String>("Predmet"));
-        OcjenaCol.setCellValueFactory(new PropertyValueFactory<OcjeneModel, String>("Ocjena"));
-        OcjeneTab.setItems(data);
+        Baza DB = new Baza();
+        ResultSet rs = DB.select("SELECT * FROM LogiraniKorisnik");
+        try {
+            while (rs.next()) {
+                int ID = rs.getInt("IDKorisnik");
+                PreparedStatement bs = DB.exec("DELETE  FROM LogiraniKorisnik WHERE IDKorisnik =?");
+                bs.setInt(1,ID);
+                bs.executeUpdate();
+                PreparedStatement ps = DB.exec("SELECT * FROM ocjene WHERE IDKorisnik =?");
+                ps.setInt(1, ID);
+                ResultSet as = ps.executeQuery();
+                System.out.println("AAA" + ID);
+                while (as.next()) {
+                    System.out.println("BBB" + ID);
+                    ObservableList<OcjeneModel> data = OcjeneModel.listaOcjena();
+                    System.out.println(data);
+                    DatumCol.setCellValueFactory(new PropertyValueFactory<OcjeneModel, String>("Datum"));
+                    ProfesorCol.setCellValueFactory(new PropertyValueFactory<OcjeneModel, String>("Profesor"));
+                    PredmetCol.setCellValueFactory(new PropertyValueFactory<OcjeneModel, String>("Predmet"));
+                    OcjenaCol.setCellValueFactory(new PropertyValueFactory<OcjeneModel, String>("Ocjena"));
+                    OcjeneTab.setItems(data);
+                }
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+
+
+
     }
+
 
 
 }

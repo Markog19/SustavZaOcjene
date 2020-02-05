@@ -28,6 +28,7 @@ public class LogiraniKorisnikModel {
             ps.setString(2, lozinka);
             ResultSet rs = ps.executeQuery();
             if (rs.next()) {
+
                 return true;
             } else {
                 return false;
