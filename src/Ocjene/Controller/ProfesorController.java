@@ -61,7 +61,12 @@ public class ProfesorController implements Initializable {
 
     public void initialize(URL url, ResourceBundle rb) {
 
-        ObservableList<OcjeneModel> data = OcjeneModel.listaOcjena();
+        ObservableList<OcjeneModel> data = null;
+        try {
+            data = OcjeneModel.listaOcjena(LoginController.ID);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
         DatumCol.setCellValueFactory(new PropertyValueFactory<OcjeneModel, String>("Datum"));
         ProfesorCol.setCellValueFactory(new PropertyValueFactory<OcjeneModel, String>("Profesor"));
         PredmetCol.setCellValueFactory(new PropertyValueFactory<OcjeneModel, String>("Predmet"));
@@ -89,7 +94,7 @@ public class ProfesorController implements Initializable {
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
-        ObservableList<OcjeneModel> data = OcjeneModel.listaOcjena();
+        ObservableList<OcjeneModel> data = OcjeneModel.listaOcjena(LoginController.ID);
         DatumCol.setCellValueFactory(new PropertyValueFactory<OcjeneModel, String>("Datum"));
         ProfesorCol.setCellValueFactory(new PropertyValueFactory<OcjeneModel, String>("Profesor"));
         PredmetCol.setCellValueFactory(new PropertyValueFactory<OcjeneModel, String>("Predmet"));
@@ -106,4 +111,5 @@ public class ProfesorController implements Initializable {
 
 
     }
+
 }

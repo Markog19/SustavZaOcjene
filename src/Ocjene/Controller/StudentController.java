@@ -16,7 +16,7 @@ import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 public class StudentController implements Initializable {
-
+    PreparedStatement pst = null;
 
     @FXML
     TableView OcjeneTab;
@@ -29,27 +29,21 @@ public class StudentController implements Initializable {
     @FXML
     TableColumn OcjenaCol;
     public void initialize(URL url, ResourceBundle rb ){
-        Baza DB = new Baza();
-        ResultSet rs = DB.select("SELECT * FROM LogiraniKorisnik");
+
+
+        ObservableList<OcjeneModel> data = null;
         try {
-            while (rs.next()) {
-                int ID = rs.getInt("IDKorisnik");
-                PreparedStatement bs = DB.exec("DELETE  FROM LogiraniKorisnik WHERE IDKorisnik =?");
-                bs.setInt(1,ID);
-                bs.executeUpdate();
-                ObservableList<OcjeneModel> data = OcjeneModel.listaOcjena();
-                for(OcjeneModel item:data){
-                    System.out.println(item);
-                }
-                DatumCol.setCellValueFactory(new PropertyValueFactory<OcjeneModel, String>("Datum"));
-                ProfesorCol.setCellValueFactory(new PropertyValueFactory<OcjeneModel, String>("Profesor"));
-                PredmetCol.setCellValueFactory(new PropertyValueFactory<OcjeneModel, String>("Predmet"));
-                OcjenaCol.setCellValueFactory(new PropertyValueFactory<OcjeneModel, String>("Ocjena"));
-                OcjeneTab.setItems(data);
-                }
-            } catch (SQLException ex) {
-            ex.printStackTrace();
+            data = OcjeneModel.listaOcjena(LoginController.ID);
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
+                    DatumCol.setCellValueFactory(new PropertyValueFactory<OcjeneModel, String>("Datum"));
+                    ProfesorCol.setCellValueFactory(new PropertyValueFactory<OcjeneModel, String>("Profesor"));
+                    PredmetCol.setCellValueFactory(new PropertyValueFactory<OcjeneModel, String>("Predmet"));
+                    OcjenaCol.setCellValueFactory(new PropertyValueFactory<OcjeneModel, String>("Ocjena"));
+                    OcjeneTab.setItems(data);
+                }
+
 
 
 
@@ -60,4 +54,4 @@ public class StudentController implements Initializable {
 
 
 
-}
+

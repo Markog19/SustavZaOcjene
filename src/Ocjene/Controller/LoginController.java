@@ -35,6 +35,7 @@ import Ocjene.Model.LogiraniKorisnikModel;
  * @author Daniel
  */
 public class LoginController implements Initializable {
+    public static int ID;
 
     @FXML
     Label statusLbl;
@@ -63,6 +64,7 @@ public class LoginController implements Initializable {
                     ResultSet rs = ps.executeQuery();
                     while (rs.next()) {
                         int id = rs.getInt("isAdmin");
+                        LoginController.ID = rs.getInt("ID");
                         if(id == 0){
                             int ID = rs.getInt("ID");
                             PreparedStatement as = DB.exec("INSERT INTO LogiraniKorisnik VALUES(null,?,?,?)");

@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="Ocjene.Controller.ProfesorController">
+<AnchorPane prefHeight="600.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="Ocjene.Controller.ProfesorController">
   <children>
     <TableView fx:id="OcjeneTab" layoutX="0.0" layoutY="6.0" prefHeight="359.0" prefWidth="371.0">
       <columns>
@@ -53,5 +53,12 @@
     <Text layoutX="410.0" layoutY="244.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ime" />
     <Text layoutX="410.0" layoutY="286.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Email" />
     <Text layoutX="410.0" layoutY="336.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Lozinka" />
+    <Label layoutX="335.0" layoutY="399.0" text="Label" />
+    <Text layoutX="37.0" layoutY="448.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Upišite predmet" />
+    <TextField layoutX="171.0" layoutY="432.0" prefWidth="200.0" />
+    <Button layoutX="171.0" layoutY="470.0" mnemonicParsing="false" text="Prosjek" />
+    <Button layoutX="171.0" layoutY="397.0" mnemonicParsing="false" text="Izaberi" />
+    <Label layoutX="335.0" layoutY="502.0" text="Label" />
+    <Button layoutX="252.0" layoutY="470.0" mnemonicParsing="false" text="Ukupni prosjek" />
   </children>
 </AnchorPane>

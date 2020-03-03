@@ -46,10 +46,12 @@ public class OcjeneModel {
         return Ocjena.get();
     }
 
-    public static ObservableList<OcjeneModel> listaOcjena () {
+    public static ObservableList<OcjeneModel> listaOcjena (int ID) throws SQLException {
         ObservableList<OcjeneModel> lista = FXCollections.observableArrayList();
         Baza DB = new Baza();
-        ResultSet rs = DB.select("SELECT * FROM ocjene");
+        PreparedStatement as = DB.exec("SELECT * FROM ocjene WHERE IDKorisnik = ?");
+        as.setInt(1,ID);
+        ResultSet rs = as.executeQuery();
         try {
             while (rs.next()) {
                 lista.add(new OcjeneModel(rs.getString("Datum"), rs.getString("Profesor"), rs.getString("Predmet"), rs.getString("Ocjena"),rs.getString("IDKorisnik")));
