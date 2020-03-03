@@ -59,6 +59,6 @@
     <Button fx:id="ProsjekPredmetBttn" layoutX="171.0" layoutY="470.0" mnemonicParsing="false" onAction="#izracunajProsjekPredmet" text="Prosjek" />
     <Button fx:id="izaberiButton" layoutX="171.0" layoutY="397.0" mnemonicParsing="false" onAction="#odaberiStudent" text="Izaberi" />
     <Label fx:id="ProsjekLabel" layoutX="335.0" layoutY="502.0" text="Label" />
-    <Button id="UkProsjekBttn" layoutX="252.0" layoutY="470.0" mnemonicParsing="false" text="Ukupni prosjek" />
+    <Button id="UkProsjekBttn" layoutX="252.0" layoutY="470.0" mnemonicParsing="false" onAction="#izracunajUkProsjek" text="Ukupni prosjek" />
   </children>
 </AnchorPane>

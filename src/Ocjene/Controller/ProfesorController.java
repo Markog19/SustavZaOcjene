@@ -155,5 +155,48 @@ public class ProfesorController implements Initializable {
         String pro = "Prosjek je " + prosjek;
         ProsjekLabel.setText(pro);
     }
+    public int izracunajProsjek(ActionEvent es, String Predmet) throws SQLException {
+        Baza DB = new Baza();
+        int ID = odaberiStudent(es);
+        PreparedStatement as = DB.exec("SELECT * FROM ocjene WHERE Predmet = ? AND IDKorisnik= ?");
+        as.setString(1,Predmet);
+        as.setInt(2,ID);
+        ResultSet ad = as.executeQuery();
+        int brojac = 0,zbroj=0;
 
+        while(ad.next()){
+            int ocjena;
+            ocjena = ad.getInt("ocjena");
+            zbroj = zbroj + ocjena;
+            brojac++;
+        }
+        float prosjek;
+        prosjek = (float) zbroj/brojac;
+        int pro = Math.round(prosjek);
+        return pro;
+    }
+
+    @FXML
+    public void izracunajUkProsjek(ActionEvent e) throws SQLException {
+        Baza DB = new Baza();
+        String listaPredmeta [] = new String[10];
+
+        PreparedStatement as = DB.exec("SELECT * FROM ocjene WHERE IDKorisnik = ?");
+        as.setInt(1, odaberiStudent(e));
+        ResultSet rs = as.executeQuery();
+        int j = 0;
+        while(rs.next()) {
+            listaPredmeta[j] = rs.getString("Predmet");
+            System.out.println(rs.getString("Predmet"));
+            for (int i = 0; i < listaPredmeta.length; i++) {
+                System.out.println(listaPredmeta[i].compareTo(rs.getString("Predmet")));
+            }
+        }
+        for (int i = 0; i < listaPredmeta.length; i++) {
+            System.out.println("Predmet " + listaPredmeta[i]);
+        }
+
+
+        }
 }
+
