@@ -6,8 +6,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.stage.Stage;
 import Ocjene.Model.OcjeneModel;
 
@@ -23,9 +22,7 @@ import java.util.logging.Logger;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.cell.PropertyValueFactory;;
+import javafx.scene.control.cell.PropertyValueFactory;;import static Ocjene.Controller.LoginController.ID;
 
 public class ProfesorController implements Initializable {
     @FXML
@@ -58,20 +55,16 @@ public class ProfesorController implements Initializable {
     TextField LozinkaCol;
     @FXML
     Button spremi;
+    @FXML
+    Button izaberiButton;
+    @FXML
+    Label StudentLabel;
+    @FXML
+    Label ProsjekLabel;
 
     public void initialize(URL url, ResourceBundle rb) {
 
-        ObservableList<OcjeneModel> data = null;
-        try {
-            data = OcjeneModel.listaOcjena(LoginController.ID);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        DatumCol.setCellValueFactory(new PropertyValueFactory<OcjeneModel, String>("Datum"));
-        ProfesorCol.setCellValueFactory(new PropertyValueFactory<OcjeneModel, String>("Profesor"));
-        PredmetCol.setCellValueFactory(new PropertyValueFactory<OcjeneModel, String>("Predmet"));
-        OcjenaCol.setCellValueFactory(new PropertyValueFactory<OcjeneModel, String>("Ocjena"));
-        OcjeneTab.setItems(data);
+
     }
 
     @FXML
@@ -94,7 +87,7 @@ public class ProfesorController implements Initializable {
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
-        ObservableList<OcjeneModel> data = OcjeneModel.listaOcjena(LoginController.ID);
+        ObservableList<OcjeneModel> data = OcjeneModel.listaOcjena(ID);
         DatumCol.setCellValueFactory(new PropertyValueFactory<OcjeneModel, String>("Datum"));
         ProfesorCol.setCellValueFactory(new PropertyValueFactory<OcjeneModel, String>("Profesor"));
         PredmetCol.setCellValueFactory(new PropertyValueFactory<OcjeneModel, String>("Predmet"));
@@ -110,6 +103,57 @@ public class ProfesorController implements Initializable {
         novi.spasi();
 
 
+    }
+    @FXML
+    public int odaberiStudent(ActionEvent e){
+        String Student = this.StudentField.getText();
+        Baza DB = new Baza();
+        int Id = 0;
+
+        PreparedStatement as = DB.exec("SELECT * FROM korisnik WHERE korisnicko_ime = ?");
+        try {
+            as.setString(1,Student);
+            StudentLabel.setText(Student);
+            ResultSet ad = as.executeQuery();
+            while (ad.next()) {
+                 Id = ad.getInt("ID");
+                ObservableList<OcjeneModel> data = OcjeneModel.listaOcjena(Id);
+                DatumCol.setCellValueFactory(new PropertyValueFactory<OcjeneModel, String>("Datum"));
+                ProfesorCol.setCellValueFactory(new PropertyValueFactory<OcjeneModel, String>("Profesor"));
+                PredmetCol.setCellValueFactory(new PropertyValueFactory<OcjeneModel, String>("Predmet"));
+                OcjenaCol.setCellValueFactory(new PropertyValueFactory<OcjeneModel, String>("Ocjena"));
+                OcjeneTab.setItems(data);
+            }
+             ;
+        }
+
+        catch (SQLException er) {
+            er.printStackTrace();
+        }
+
+        return Id;
+    }
+    @FXML
+    public void izracunajProsjekPredmet(ActionEvent e) throws SQLException {
+        String Predmet = this.PredmetField.getText();
+        Baza DB = new Baza();
+        int ID = odaberiStudent(e);
+        PreparedStatement as = DB.exec("SELECT * FROM ocjene WHERE Predmet = ? AND IDKorisnik= ?");
+        as.setString(1,Predmet);
+        as.setInt(2,ID);
+        ResultSet ad = as.executeQuery();
+        int brojac = 0,zbroj=0;
+
+        while(ad.next()){
+            int ocjena;
+            ocjena = ad.getInt("ocjena");
+            zbroj = zbroj + ocjena;
+            brojac++;
+        }
+        float prosjek;
+        prosjek = (float) zbroj/brojac;
+        String pro = "Prosjek je " + prosjek;
+        ProsjekLabel.setText(pro);
     }
 
 }

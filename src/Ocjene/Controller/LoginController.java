@@ -65,14 +65,6 @@ public class LoginController implements Initializable {
                     while (rs.next()) {
                         int id = rs.getInt("isAdmin");
                         LoginController.ID = rs.getInt("ID");
-                        if(id == 0){
-                            int ID = rs.getInt("ID");
-                            PreparedStatement as = DB.exec("INSERT INTO LogiraniKorisnik VALUES(null,?,?,?)");
-                            as.setInt(1,ID);
-                            as.setString(2,kime);
-                            as.setString(3,lozinka);
-                            as.executeUpdate();
-                        }
                         if (id == 1) {
                             Parent root;
                             root = FXMLLoader.load(getClass().getClassLoader().getResource("Ocjene/View/Profesor.fxml"));
