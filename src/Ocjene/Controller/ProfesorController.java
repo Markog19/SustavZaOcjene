@@ -178,24 +178,15 @@ public class ProfesorController implements Initializable {
 
     @FXML
     public void izracunajUkProsjek(ActionEvent e) throws SQLException {
-        Baza DB = new Baza();
-        String listaPredmeta [] = new String[10];
-
-        PreparedStatement as = DB.exec("SELECT * FROM ocjene WHERE IDKorisnik = ?");
-        as.setInt(1, odaberiStudent(e));
-        ResultSet rs = as.executeQuery();
-        int j = 0;
-        while(rs.next()) {
-            listaPredmeta[j] = rs.getString("Predmet");
-            System.out.println(rs.getString("Predmet"));
-            for (int i = 0; i < listaPredmeta.length; i++) {
-                System.out.println(listaPredmeta[i].compareTo(rs.getString("Predmet")));
-            }
-        }
-        for (int i = 0; i < listaPredmeta.length; i++) {
-            System.out.println("Predmet " + listaPredmeta[i]);
-        }
-
+       String listaPredmeta[] = new String[]{"Matematika","Povijest"};
+       int zbroj = 0;
+       for(int i = 0;i<listaPredmeta.length;i++){
+           zbroj = zbroj + izracunajProsjek(e,listaPredmeta[i]);
+       }
+       float prosjek;
+       prosjek = (float) zbroj/listaPredmeta.length;
+       String proText = "Ukupni prosjek je " + prosjek;
+       ProsjekLabel.setText(proText);
 
         }
 }

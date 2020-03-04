@@ -32,7 +32,7 @@ import Ocjene.Model.LogiraniKorisnikModel;
 /**
  * FXML Controller class
  *
- * @author Daniel
+
  */
 public class LoginController implements Initializable {
     public static int ID;
@@ -69,14 +69,14 @@ public class LoginController implements Initializable {
                             Parent root;
                             root = FXMLLoader.load(getClass().getClassLoader().getResource("Ocjene/View/Profesor.fxml"));
                             Stage stage = new Stage();
-                            stage.setTitle("Prikaz svih studenata u Bazi podataka");
+                            stage.setTitle("Prikaz studenta");
                             stage.setScene(new Scene(root, 600, 600));
                             stage.show();
                         } else {
                             Parent root;
                             root = FXMLLoader.load(getClass().getClassLoader().getResource("Ocjene/View/Student.fxml"));
                             Stage stage = new Stage();
-                            stage.setTitle("Prikaz svih studenata u Bazi podataka");
+                            stage.setTitle("Prikaz studenta");
                             stage.setScene(new Scene(root, 600, 400));
                             stage.show();
                         }
