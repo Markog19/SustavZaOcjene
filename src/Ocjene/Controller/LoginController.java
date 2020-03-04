@@ -8,6 +8,7 @@ package Ocjene.Controller;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.*;
+import java.util.Objects;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -72,12 +73,12 @@ public class LoginController implements Initializable {
                             stage.setTitle("Prikaz studenta");
                             stage.setScene(new Scene(root, 600, 600));
                             stage.show();
-                        } else {
+                        } if(id == 0) {
                             Parent root;
                             root = FXMLLoader.load(getClass().getClassLoader().getResource("Ocjene/View/Student.fxml"));
                             Stage stage = new Stage();
                             stage.setTitle("Prikaz studenta");
-                            stage.setScene(new Scene(root, 600, 400));
+                            stage.setScene(new Scene(root, 600, 600));
                             stage.show();
                         }
                     }
