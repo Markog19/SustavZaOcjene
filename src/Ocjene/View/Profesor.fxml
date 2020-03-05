@@ -9,38 +9,37 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="600.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="Ocjene.Controller.ProfesorController">
+<AnchorPane prefHeight="600.0" prefWidth="742.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="Ocjene.Controller.ProfesorController">
   <children>
-    <TableView fx:id="OcjeneTab" layoutX="0.0" layoutY="6.0" prefHeight="359.0" prefWidth="371.0">
+    <TableView fx:id="OcjeneTab" layoutX="0.0" layoutY="6.0" prefHeight="359.0" prefWidth="474.0">
       <columns>
         <TableColumn prefWidth="75.0" text="Datum" fx:id="DatumCol" />
-        <TableColumn prefWidth="75.0" text="Profesor" fx:id="ProfesorCol" />
+        <TableColumn prefWidth="75.0" text="Ime studenta" fx:id="ImeCol" />
         <TableColumn maxWidth="5000.0" minWidth="10.0" prefWidth="145.0" text="Predmet" fx:id="PredmetCol" />
-        <TableColumn prefWidth="75.0" text="Ocjena" fx:id="OcjenaCol" />
+        <TableColumn prefWidth="75.0" text="Profesor" fx:id="ProfesorCol" />
+        <TableColumn maxWidth="5000.0" minWidth="10.0" prefWidth="103.0" text="Ocjena" fx:id="OcjenaCol" />
       </columns>
     </TableView>
-    <VBox layoutX="446.0" layoutY="0.0" prefHeight="200.0" prefWidth="153.0">
+    <VBox layoutX="560.0" layoutY="13.0" prefHeight="200.0" prefWidth="153.0">
       <children>
         <TextField fx:id="DatumField" prefWidth="200.0">
           <VBox.margin>
             <Insets bottom="10.0" left="20.0" right="20.0" top="10.0" fx:id="x1" />
           </VBox.margin>
         </TextField>
-        <TextField fx:id="ProfesorField" prefWidth="200.0" VBox.margin="$x1" />
         <TextField fx:id="PredmetField" prefWidth="200.0" VBox.margin="$x1" />
         <TextField fx:id="OcjenaField" prefWidth="200.0" VBox.margin="$x1" />
         <Button fx:id="spremiBtn" mnemonicParsing="false" onAction="#dodajOcjenu" prefWidth="153.0" text="Spremi" />
       </children>
     </VBox>
-    <Text layoutX="402.0" layoutY="26.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Datum" />
-    <Text layoutX="402.0" layoutY="68.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Profesor" />
-    <Text layoutX="402.0" layoutY="110.0" scaleX="1.0" scaleY="1.0000066081567769" strokeType="OUTSIDE" strokeWidth="0.0" text="Predmet" />
-    <Text layoutX="402.0" layoutY="152.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ocjena" />
+    <Text layoutX="511.0" layoutY="39.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Datum" />
+    <Text layoutX="511.0" layoutY="81.0" scaleX="1.0" scaleY="1.0000066081567769" strokeType="OUTSIDE" strokeWidth="0.0" text="Predmet" />
+    <Text layoutX="511.0" layoutY="125.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ocjena" />
     <Text layoutX="37.0" layoutY="384.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Izaberite studenta" />
     <TextField fx:id="StudentField" layoutX="171.0" layoutY="368.0" prefWidth="200.0" />
-    <VBox layoutX="447.0" layoutY="219.0" prefHeight="170.93408203125" prefWidth="153.0">
+    <VBox layoutX="561.0" layoutY="232.0" prefHeight="170.93408203125" prefWidth="153.0">
       <children>
-        <TextField fx:id="ImeCol" prefWidth="200.0">
+        <TextField fx:id="ImeField" prefWidth="200.0">
           <VBox.margin>
             <Insets bottom="20.0" left="20.0" right="20.0" top="10.0" fx:id="x2" />
           </VBox.margin>
@@ -50,15 +49,16 @@
         <Button fx:id="spremi" mnemonicParsing="false" onAction="#dodajStudenta" prefWidth="153.0" text="Spremi" />
       </children>
     </VBox>
-    <Text layoutX="410.0" layoutY="244.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ime" />
-    <Text layoutX="410.0" layoutY="286.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Email" />
-    <Text layoutX="410.0" layoutY="336.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Lozinka" />
+    <Text layoutX="524.0" layoutY="257.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ime" />
+    <Text layoutX="524.0" layoutY="299.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Email" />
+    <Text layoutX="524.0" layoutY="349.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Lozinka" />
     <Label fx:id="StudentLabel" layoutX="335.0" layoutY="400.0" text="Label" />
     <Text layoutX="37.0" layoutY="448.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Upišite predmet" />
-    <TextField fx:id="PredmetField" layoutX="171.0" layoutY="432.0" prefWidth="200.0" />
+    <TextField fx:id="Predmet" layoutX="171.0" layoutY="432.0" prefWidth="200.0" />
     <Button fx:id="ProsjekPredmetBttn" layoutX="171.0" layoutY="470.0" mnemonicParsing="false" onAction="#izracunajProsjekPredmet" text="Prosjek" />
     <Button fx:id="izaberiButton" layoutX="171.0" layoutY="397.0" mnemonicParsing="false" onAction="#odaberiStudent" text="Izaberi" />
     <Label fx:id="ProsjekLabel" layoutX="335.0" layoutY="502.0" text="Label" />
     <Button id="UkProsjekBttn" layoutX="252.0" layoutY="470.0" mnemonicParsing="false" onAction="#izracunajUkProsjek" text="Ukupni prosjek" />
+    <Button layoutX="171.0" layoutY="518.0" mnemonicParsing="false" onAction="#ocjeneIzPredmeta" text="Ocjene iz predmeta" />
   </children>
 </AnchorPane>

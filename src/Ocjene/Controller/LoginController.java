@@ -37,6 +37,7 @@ import Ocjene.Model.LogiraniKorisnikModel;
  */
 public class LoginController implements Initializable {
     public static int ID;
+    public static String Profesor;
 
     @FXML
     Label statusLbl;
@@ -67,6 +68,7 @@ public class LoginController implements Initializable {
                         int id = rs.getInt("isAdmin");
                         LoginController.ID = rs.getInt("ID");
                         if (id == 1) {
+                            Profesor = kime;
                             Parent root;
                             root = FXMLLoader.load(getClass().getClassLoader().getResource("Ocjene/View/Profesor.fxml"));
                             Stage stage = new Stage();
