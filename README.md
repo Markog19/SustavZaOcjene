@@ -13,3 +13,4 @@ Dodavanje u listOcjene id parametra kako bi se mogao izvršiti upit "SELECT * FR
  ## Plan
  
  Dodati opcije za edit, delete, filtriranje po pojedinacnom predmetu. Omoguciti aktiviranje buttona na pritisak tipke enter.
+ Dodati mogucnost liste za predmete i ucenike
