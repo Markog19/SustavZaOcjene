@@ -3,26 +3,20 @@ package Ocjene.Controller;
 import Ocjene.Model.Baza;
 import Ocjene.Model.KorisnikModel;
 import javafx.event.ActionEvent;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
+import javafx.event.Event;
 import javafx.scene.control.*;
-import javafx.stage.Stage;
 import Ocjene.Model.OcjeneModel;
 
-import java.io.IOException;
 import java.net.URL;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.cell.PropertyValueFactory;;import static Ocjene.Controller.LoginController.ID;
+import javafx.scene.control.cell.PropertyValueFactory;;
 
 public class ProfesorController implements Initializable {
     @FXML
@@ -62,9 +56,13 @@ public class ProfesorController implements Initializable {
     @FXML
     TextField Predmet;
     @FXML
-    TableColumn ImeCol;
+    Label IDLabel;
+    @FXML
+    TableColumn IDCol;
+
     public static int IDKorisnik;
     public static String imeStudenta;
+    OcjeneModel odabraniKontakt;
 
     public void initialize(URL url, ResourceBundle rb) {
 
@@ -78,13 +76,13 @@ public class ProfesorController implements Initializable {
         String Predmet = this.PredmetField.getText();
         String Ocjena = this.OcjenaField.getText();
         System.out.println(IDKorisnik);
-        OcjeneModel novi = new OcjeneModel(Datum, imeStudenta, Profesor, Predmet, Ocjena,IDKorisnik);
+        OcjeneModel novi = new OcjeneModel(null,Datum, imeStudenta, Profesor, Predmet, Ocjena,IDKorisnik);
         novi.spasi();
 
 
         ObservableList<OcjeneModel> data = OcjeneModel.listaOcjena(IDKorisnik);
+        IDCol.setCellValueFactory(new PropertyValueFactory<OcjeneModel, String>("ID"));
         DatumCol.setCellValueFactory(new PropertyValueFactory<OcjeneModel, String>("Datum"));
-        ImeCol.setCellValueFactory(new PropertyValueFactory<OcjeneModel, String>("Ime"));
         ProfesorCol.setCellValueFactory(new PropertyValueFactory<OcjeneModel, String>("Profesor"));
         PredmetCol.setCellValueFactory(new PropertyValueFactory<OcjeneModel, String>("Predmet"));
         OcjenaCol.setCellValueFactory(new PropertyValueFactory<OcjeneModel, String>("Ocjena"));
@@ -119,6 +117,7 @@ public class ProfesorController implements Initializable {
             while (ad.next()) {
                  IDKorisnik = ad.getInt("ID");
                 ObservableList<OcjeneModel> data = OcjeneModel.listaOcjena(IDKorisnik);
+                IDCol.setCellValueFactory(new PropertyValueFactory<OcjeneModel, String>("ID"));
                 DatumCol.setCellValueFactory(new PropertyValueFactory<OcjeneModel, String>("Datum"));
                 ProfesorCol.setCellValueFactory(new PropertyValueFactory<OcjeneModel, String>("Profesor"));
                 PredmetCol.setCellValueFactory(new PropertyValueFactory<OcjeneModel, String>("Predmet"));
@@ -203,5 +202,37 @@ public class ProfesorController implements Initializable {
             OcjenaCol.setCellValueFactory(new PropertyValueFactory<OcjeneModel, String>("Ocjena"));
             OcjeneTab.setItems(data);
         }
+
+    @FXML
+    public void odaberiKorisnika (Event e) {
+        this.odabraniKontakt = (OcjeneModel)this.OcjeneTab.getSelectionModel().getSelectedItem();
+        this.IDLabel.setText(this.odabraniKontakt.getID());
+        this.DatumField.setText(this.odabraniKontakt.getDatum());
+        this.PredmetField.setText(this.odabraniKontakt.getPredmet());
+        this.OcjenaField.setText(this.odabraniKontakt.getOcjena());
+    }
+    @FXML
+    public void urediKontakt(Event e) throws SQLException {
+        this.odabraniKontakt.setDatum(this.DatumField.getText());
+        this.odabraniKontakt.setPredmet(this.PredmetField.getText());
+        this.odabraniKontakt.setOcjena(this.OcjenaField.getText());
+        this.odabraniKontakt.uredi(IDLabel.getText());
+        ObservableList<OcjeneModel> data = OcjeneModel.listaOcjena(IDKorisnik);
+        this.OcjeneTab.setItems(data);
+    }
+    @FXML
+    public void brisiKontakt(Event  e) throws SQLException {
+        if (this.odabraniKontakt != null) {
+            this.odabraniKontakt.brisi(IDLabel.getText());
+            ObservableList<OcjeneModel> data = OcjeneModel.listaOcjena(IDKorisnik);
+            IDCol.setCellValueFactory(new PropertyValueFactory<OcjeneModel, String>("ID"));
+            DatumCol.setCellValueFactory(new PropertyValueFactory<OcjeneModel, String>("Datum"));
+            ProfesorCol.setCellValueFactory(new PropertyValueFactory<OcjeneModel, String>("Profesor"));
+            PredmetCol.setCellValueFactory(new PropertyValueFactory<OcjeneModel, String>("Predmet"));
+            OcjenaCol.setCellValueFactory(new PropertyValueFactory<OcjeneModel, String>("Ocjena"));
+            OcjeneTab.setItems(data);
+        }
+    }
+
 }
 

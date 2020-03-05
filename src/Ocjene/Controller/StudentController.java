@@ -35,6 +35,8 @@ public class StudentController implements Initializable {
     TextField PredmetField;
     @FXML
     Label ProsjekLabel;
+    @FXML
+    TableColumn IDCol;
 
     public void initialize(URL url, ResourceBundle rb ){
 
@@ -45,6 +47,7 @@ public class StudentController implements Initializable {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        IDCol.setCellValueFactory(new PropertyValueFactory<OcjeneModel, String>("ID"));
         DatumCol.setCellValueFactory(new PropertyValueFactory<OcjeneModel, String>("Datum"));
         ProfesorCol.setCellValueFactory(new PropertyValueFactory<OcjeneModel, String>("Profesor"));
         PredmetCol.setCellValueFactory(new PropertyValueFactory<OcjeneModel, String>("Predmet"));
