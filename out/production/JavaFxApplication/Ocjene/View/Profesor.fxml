@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="600.0" prefWidth="800.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="Ocjene.Controller.ProfesorController">
+<AnchorPane prefHeight="600.0" prefWidth="1154.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="Ocjene.Controller.ProfesorController">
   <children>
     <TableView fx:id="OcjeneTab" layoutX="0.0" layoutY="6.0" onMouseClicked="#odaberiKorisnika" prefHeight="359.0" prefWidth="495.0">
       <columns>
@@ -35,14 +35,14 @@
             <Insets top="10.0" />
           </VBox.margin>
         </Button>
+        <Button mnemonicParsing="false" onAction="#brisiKontakt" onMouseClicked="#odaberiKorisnika" prefWidth="150.0" text="Obrisi Ocjenu" />
       </children>
     </VBox>
     <Text layoutX="583.0" layoutY="45.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Datum" />
     <Text layoutX="583.0" layoutY="87.0" scaleX="1.0" scaleY="1.0000066081567769" strokeType="OUTSIDE" strokeWidth="0.0" text="Predmet" />
     <Text layoutX="583.0" layoutY="131.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ocjena" />
     <Text layoutX="37.0" layoutY="384.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Izaberite studenta" />
-    <TextField fx:id="StudentField" layoutX="171.0" layoutY="368.0" prefWidth="200.0" />
-    <VBox layoutX="633.0" layoutY="238.0" prefHeight="170.93408203125" prefWidth="153.0">
+    <VBox layoutX="633.0" layoutY="240.0" prefHeight="170.93408203125" prefWidth="153.0">
       <children>
         <TextField fx:id="ImeField" prefWidth="200.0">
           <VBox.margin>
@@ -59,13 +59,36 @@
     <Text layoutX="596.0" layoutY="355.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Lozinka" />
     <Label fx:id="StudentLabel" layoutX="335.0" layoutY="400.0" text="Label" />
     <Text layoutX="37.0" layoutY="448.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Upišite predmet" />
-    <TextField fx:id="Predmet" layoutX="171.0" layoutY="432.0" prefWidth="200.0" />
     <Button fx:id="ProsjekPredmetBttn" layoutX="171.0" layoutY="470.0" mnemonicParsing="false" onAction="#izracunajProsjekPredmet" text="Prosjek" />
     <Button fx:id="izaberiButton" layoutX="171.0" layoutY="397.0" mnemonicParsing="false" onAction="#odaberiStudent" text="Izaberi" />
     <Label fx:id="ProsjekLabel" layoutX="335.0" layoutY="502.0" text="Label" />
     <Button id="UkProsjekBttn" layoutX="252.0" layoutY="470.0" mnemonicParsing="false" onAction="#izracunajUkProsjek" text="Ukupni prosjek" />
     <Button layoutX="171.0" layoutY="518.0" mnemonicParsing="false" onAction="#ocjeneIzPredmeta" text="Ocjene iz predmeta" />
     <Label fx:id="IDLabel" layoutX="691.0" layoutY="6.0" text="ID" />
-    <Button layoutX="650.0" layoutY="436.0" mnemonicParsing="false" onAction="#brisiKontakt" text="Obrisi Ocjenu" />
+    <ChoiceBox fx:id="choiceBox" layoutX="175.0" layoutY="368.0" prefWidth="189.0">
+      <items>
+        <FXCollections fx:factory="observableArrayList">
+
+        </FXCollections>
+      </items>
+    </ChoiceBox>
+    <ChoiceBox fx:id="cb" layoutX="175.0" layoutY="433.0" prefWidth="189.0">
+      <items>
+        <FXCollections fx:factory="observableArrayList">
+
+        </FXCollections>
+      </items>
+    </ChoiceBox>
+    <TableView layoutX="816.0" layoutY="6.0" prefHeight="446.0" prefWidth="301.0">
+      <columns>
+        <TableColumn prefWidth="75.0" text="ID" fx:id="IDCol1" />
+        <TableColumn prefWidth="75.0" text="Student" fx:id="StudentCol" />
+        <TableColumn prefWidth="75.0" text="Email" fx:id="EmailCol1" />
+        <TableColumn prefWidth="75.0" text="Lozinka" fx:id="LozinkaCol1" />
+      </columns>
+    </TableView>
+    <Button layoutX="633.0" layoutY="416.0" mnemonicParsing="false" prefWidth="153.0" text="Uredi" />
+    <Button layoutX="633.0" layoutY="444.0" mnemonicParsing="false" prefWidth="153.0" text="Obriši" />
+    <Label layoutX="691.0" layoutY="229.0" text="ID" />
   </children>
 </AnchorPane>

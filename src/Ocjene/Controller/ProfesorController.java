@@ -2,6 +2,7 @@ package Ocjene.Controller;
 
 import Ocjene.Model.Baza;
 import Ocjene.Model.KorisnikModel;
+import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.scene.control.*;
@@ -59,15 +60,35 @@ public class ProfesorController implements Initializable {
     Label IDLabel;
     @FXML
     TableColumn IDCol;
+    @FXML
+    ChoiceBox<String> choiceBox;
+    @FXML
+    ChoiceBox<String> cb;
 
-    public static int IDKorisnik;
+    public static int IDKorisnik = 2;
     public static String imeStudenta;
     OcjeneModel odabraniKontakt;
 
     public void initialize(URL url, ResourceBundle rb) {
+    ObservableList <String> data = KorisnikModel.listaStudenata();
+        choiceBox.setItems(data);
+
+
+        ObservableList<String>Predmeti;
+        try {
+            Predmeti = OcjeneModel.listaPredmeta(IDKorisnik);
+            cb.setItems(Predmeti);
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
 
 
     }
+
+
+
 
     @FXML
     public void dodajOcjenu(ActionEvent e) throws SQLException {
@@ -90,6 +111,9 @@ public class ProfesorController implements Initializable {
         DatumField.clear();
         PredmetField.clear();
         OcjenaField.clear();
+        ObservableList<String> Predmeti = OcjeneModel.listaPredmeta(IDKorisnik);
+        cb.setItems(Predmeti);
+
         }
     @FXML
         public void dodajStudenta(ActionEvent e){
@@ -98,6 +122,8 @@ public class ProfesorController implements Initializable {
         String Lozinka = this.LozinkaCol.getText();
         KorisnikModel novi = new KorisnikModel(Ime, Email,Lozinka);
         novi.spasi();
+        ObservableList <String> data = KorisnikModel.listaStudenata();
+        choiceBox.setItems(data);
         ImeField.clear();
         EmailCol.clear();
         LozinkaCol.clear();
@@ -105,10 +131,12 @@ public class ProfesorController implements Initializable {
 
     }
     @FXML
-    public void odaberiStudent(ActionEvent e){
-        String Student = this.StudentField.getText();
+    public void odaberiStudent(ActionEvent e) throws SQLException {
+
+        String Student = this.choiceBox.getValue();
         Baza DB = new Baza();
         imeStudenta = Student;
+
         PreparedStatement as = DB.exec("SELECT * FROM korisnik WHERE korisnicko_ime = ?");
         try {
             as.setString(1,Student);
@@ -116,6 +144,8 @@ public class ProfesorController implements Initializable {
             ResultSet ad = as.executeQuery();
             while (ad.next()) {
                  IDKorisnik = ad.getInt("ID");
+               ObservableList<String> Predmeti = OcjeneModel.listaPredmeta(IDKorisnik);
+                cb.setItems(Predmeti);
                 ObservableList<OcjeneModel> data = OcjeneModel.listaOcjena(IDKorisnik);
                 IDCol.setCellValueFactory(new PropertyValueFactory<OcjeneModel, String>("ID"));
                 DatumCol.setCellValueFactory(new PropertyValueFactory<OcjeneModel, String>("Datum"));
@@ -123,7 +153,6 @@ public class ProfesorController implements Initializable {
                 PredmetCol.setCellValueFactory(new PropertyValueFactory<OcjeneModel, String>("Predmet"));
                 OcjenaCol.setCellValueFactory(new PropertyValueFactory<OcjeneModel, String>("Ocjena"));
                 OcjeneTab.setItems(data);
-                StudentField.clear();
 
 
             }
@@ -136,7 +165,7 @@ public class ProfesorController implements Initializable {
     }
     @FXML
     public void izracunajProsjekPredmet(ActionEvent e) throws SQLException {
-        String Predmet = this.Predmet.getText();
+        String Predmet = this.cb.getValue();
         Baza DB = new Baza();
         PreparedStatement as = DB.exec("SELECT * FROM ocjene WHERE Predmet = ? AND IDKorisnik= ?");
         as.setString(1,Predmet);
@@ -154,7 +183,7 @@ public class ProfesorController implements Initializable {
         prosjek = (float) zbroj/brojac;
         String pro = "Prosjek je " + prosjek;
         ProsjekLabel.setText(pro);
-        this.Predmet.clear();
+
     }
     public int izracunajProsjek(ActionEvent es, String Predmet) throws SQLException {
         Baza DB = new Baza();
@@ -174,15 +203,16 @@ public class ProfesorController implements Initializable {
         float prosjek;
         prosjek = (float) zbroj/brojac;
         int pro = Math.round(prosjek);
+        System.out.println(pro);
         return pro;
     }
 
     @FXML
     public void izracunajUkProsjek(ActionEvent e) throws SQLException {
-       String listaPredmeta[] = new String[]{"Matematika","Povijest"};
+       String listaPredmeta[] = OcjeneModel.listaPredmeta(IDKorisnik).toArray(new String[OcjeneModel.k + 1]);
        int zbroj = 0;
        for(int i = 0;i<listaPredmeta.length;i++){
-           zbroj = zbroj + izracunajProsjek(e,listaPredmeta[i]);
+           zbroj = zbroj + izracunajProsjek(null,listaPredmeta[i]);
        }
        float prosjek;
        prosjek = (float) zbroj/listaPredmeta.length;
@@ -192,7 +222,7 @@ public class ProfesorController implements Initializable {
         }
         @FXML
     public  void ocjeneIzPredmeta(ActionEvent e) throws SQLException {
-            String Predmet = this.Predmet.getText();
+                String Predmet = this.cb.getValue();
 
 
             ObservableList<OcjeneModel> data = OcjeneModel.listaOcjena(IDKorisnik,Predmet);

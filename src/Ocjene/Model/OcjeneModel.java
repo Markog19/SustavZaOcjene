@@ -1,15 +1,20 @@
 package Ocjene.Model;
 
 import Ocjene.Controller.LoginController;
+import Ocjene.Controller.ProfesorController;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.Event;
+import javafx.fxml.FXML;
+import javafx.scene.control.ChoiceBox;
 
 import javax.security.auth.login.LoginContext;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.PropertyResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -67,6 +72,7 @@ public class OcjeneModel {
     public String getIme() {
         return Ime.get();
     }
+    public static int k = 0;
 
     public static ObservableList<OcjeneModel> listaOcjena (int ID) throws SQLException {
         ObservableList<OcjeneModel> lista = FXCollections.observableArrayList();
@@ -102,6 +108,66 @@ public class OcjeneModel {
         }
         return lista;
     }
+    public static ObservableList<String> listaPredmeta (int ID) throws SQLException {
+        ObservableList<String> lista = FXCollections.observableArrayList();
+        Baza DB = new Baza();
+        PreparedStatement as = DB.exec("SELECT COUNT(*) AS rowcount FROM ocjene WHERE IDKorisnik = ?");
+        as.setInt(1,ID);
+        ResultSet a = as.executeQuery();
+        a.next();
+         int vel = a.getInt("rowcount");
+        PreparedStatement ad = DB.exec("SELECT * FROM ocjene WHERE IDKorisnik = ?");
+        ad.setInt(1, ID);
+
+        ResultSet rs = ad.executeQuery();
+
+        String[] predmeti = new String[vel+1];
+        int brojac = 0;
+        k = 0;
+        try {
+            while (rs.next()) {
+                    predmeti[brojac] = rs.getString("Predmet");
+                    brojac++;
+
+            }
+
+        } catch (SQLException ex) {
+            System.out.println("Nastala je greška prilikom iteriranja: " + ex.getMessage());
+        }
+        System.out.println(brojac);
+        if(brojac == 1){
+            lista.add(predmeti[brojac]);
+        }
+        else{
+            for(int i = 0;i<brojac-1;i++) {
+
+                for (int j = i + 1; j < brojac; j++) {
+
+                    if (predmeti[i].equals(predmeti[j])) {
+                        predmeti[j] = predmeti[j+1];
+                        k++;
+                    }
+
+                }
+
+            }
+
+        }
+        if(k ==0){
+            for(int i = 0;i<brojac;i++)
+                lista.addAll(predmeti[i]);
+
+        }
+        else {
+            for (int i = 0; i <= k; i++) {
+                lista.addAll(predmeti[i]);
+            }
+        }
+
+
+
+        return lista;
+    }
     public void spasi () {
         Baza DB = new Baza();
         PreparedStatement insert = DB.exec("INSERT INTO ocjene VALUES(null,?,?,?,?,?,?)");
@@ -118,6 +184,7 @@ public class OcjeneModel {
             Logger.getLogger(OcjeneModel.class.getName()).log(Level.SEVERE, null,
                     ex);
         }
+
      }
 
     public void uredi (String ID) {
@@ -145,4 +212,6 @@ public class OcjeneModel {
             System.out.println("Greška prilikom spasavanja korisnika u bazu:" + ex.getMessage());
         }
     }
+
+
 }

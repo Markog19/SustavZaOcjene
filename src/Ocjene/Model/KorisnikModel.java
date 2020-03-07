@@ -45,6 +45,19 @@ public class KorisnikModel {
         }
         return lista;
     }
+    public static ObservableList<String> listaStudenata () {
+        ObservableList<String> lista = FXCollections.observableArrayList();
+        Baza DB = new Baza();
+        ResultSet rs = DB.select("SELECT * FROM korisnik WHERE isAdmin = 0");
+        try {
+            while (rs.next()) {
+                lista.add(rs.getString("korisnicko_ime"));
+            }
+        } catch (SQLException ex) {
+            System.out.println("Nastala je greška prilikom iteriranja: " + ex.getMessage());
+        }
+        return lista;
+    }
     public void spasi () {
         Baza DB = new Baza();
         PreparedStatement insert = DB.exec("INSERT INTO korisnik VALUES(null,?,?,?,0)");

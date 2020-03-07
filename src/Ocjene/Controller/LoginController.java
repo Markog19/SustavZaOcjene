@@ -15,16 +15,18 @@ import java.util.logging.Logger;
 
 import Ocjene.Model.Baza;
 import Ocjene.Model.LogiraniKorisnikModel;
+import Ocjene.Model.OcjeneModel;
+import javafx.application.Application;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
@@ -35,7 +37,7 @@ import Ocjene.Model.LogiraniKorisnikModel;
  *
 
  */
-public class LoginController implements Initializable {
+public class LoginController  implements Initializable {
     public static int ID;
     public static String Profesor;
 
@@ -47,6 +49,21 @@ public class LoginController implements Initializable {
 
     @FXML
     PasswordField lozinkaTxt;
+
+
+        @FXML
+        public void handle(KeyEvent keyEvent) {
+            if (keyEvent.getCode() == KeyCode.ENTER) {
+                try {
+                    this.prijavise(null);
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                } catch (ClassNotFoundException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+   
 
 
     public void prijavise(ActionEvent e) throws SQLException, ClassNotFoundException {
@@ -95,6 +112,8 @@ public class LoginController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+
+
         // TODO
     }
 
