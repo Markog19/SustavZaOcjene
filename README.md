@@ -1,9 +1,3 @@
-# SustavZaOcjene
-kada korisnik upise svoje podatke ime se salje na drugi kontroler
-i preko tog imena trazimo ID u bazi te usporedjujemo sa IDKorisnik u 
-tablici ocjene i preko tog ID-a ispisivamo sve ostale podatke
-
-delete i edit opcija za profesora
 
 ## Promjene 03.03.2020.
 
@@ -13,3 +7,8 @@ Dodavanje u listOcjene id parametra kako bi se mogao izvršiti upit "SELECT * FR
  ## Plan
  
  Dodati opcije za edit, delete, filtriranje po pojedinacnom predmetu. Omoguciti aktiviranje buttona na pritisak tipke enter.
+ Dodati mogucnost liste za predmete i ucenike
+ responsive view
+ dodat choicebox
+ uredit sucelje
+ 
