@@ -32,7 +32,7 @@
         <Button fx:id="spremiBtn" mnemonicParsing="false" onAction="#dodajOcjenu" prefWidth="153.0" text="Spremi" />
         <Button mnemonicParsing="false" onAction="#urediKontakt" prefWidth="153.0" text="Uredi">
           <VBox.margin>
-            <Insets top="10.0" />
+            <Insets bottom="10.0" top="10.0" />
           </VBox.margin>
         </Button>
         <Button mnemonicParsing="false" onAction="#brisiKontakt" onMouseClicked="#odaberiKorisnika" prefWidth="150.0" text="Obrisi Ocjenu" />
@@ -42,53 +42,53 @@
     <Text layoutX="583.0" layoutY="87.0" scaleX="1.0" scaleY="1.0000066081567769" strokeType="OUTSIDE" strokeWidth="0.0" text="Predmet" />
     <Text layoutX="583.0" layoutY="131.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ocjena" />
     <Text layoutX="37.0" layoutY="384.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Izaberite studenta" />
-    <VBox layoutX="633.0" layoutY="240.0" prefHeight="170.93408203125" prefWidth="153.0">
+    <VBox layoutX="633.0" layoutY="293.0" prefHeight="230.0" prefWidth="153.0">
       <children>
         <TextField fx:id="ImeField" prefWidth="200.0">
           <VBox.margin>
             <Insets bottom="20.0" left="20.0" right="20.0" top="10.0" fx:id="x2" />
           </VBox.margin>
         </TextField>
-        <TextField fx:id="EmailCol" prefWidth="200.0" VBox.margin="$x2" />
-        <TextField fx:id="LozinkaCol" prefWidth="200.0" VBox.margin="$x2" />
-        <Button fx:id="spremi" mnemonicParsing="false" onAction="#dodajStudenta" prefWidth="153.0" text="Spremi" />
+        <TextField id="Email" fx:id="EmailField" prefWidth="200.0" VBox.margin="$x2" />
+        <TextField id="Lozinka" fx:id="LozinkaField" prefWidth="200.0" VBox.margin="$x2" />
+        <Button fx:id="spremi" mnemonicParsing="false" onAction="#dodajStudenta" prefWidth="153.0" text="Spremi">
+          <VBox.margin>
+            <Insets top="10.0" fx:id="x3" />
+          </VBox.margin>
+        </Button>
+        <Button mnemonicParsing="false" prefWidth="153.0" text="Uredi" VBox.margin="$x3" />
+        <Button mnemonicParsing="false" onAction="#obrisiStudent" prefWidth="153.0" text="Obriši" VBox.margin="$x3" />
       </children>
     </VBox>
-    <Text layoutX="596.0" layoutY="263.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ime" />
-    <Text layoutX="596.0" layoutY="305.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Email" />
-    <Text layoutX="596.0" layoutY="355.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Lozinka" />
+    <Text layoutX="596.0" layoutY="312.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ime" />
+    <Text layoutX="596.0" layoutY="361.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Email" />
+    <Text layoutX="594.0" layoutY="404.0" scaleX="0.9155201234409155" scaleY="1.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Lozinka" />
     <Label fx:id="StudentLabel" layoutX="335.0" layoutY="400.0" text="Label" />
     <Text layoutX="37.0" layoutY="448.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Upišite predmet" />
     <Button fx:id="ProsjekPredmetBttn" layoutX="171.0" layoutY="470.0" mnemonicParsing="false" onAction="#izracunajProsjekPredmet" text="Prosjek" />
-    <Button fx:id="izaberiButton" layoutX="171.0" layoutY="397.0" mnemonicParsing="false" onAction="#odaberiStudent" text="Izaberi" />
+    <Button fx:id="izaberiButton" layoutX="171.0" layoutY="396.0" mnemonicParsing="false" onAction="#odaberiStudent" text="Izaberi" />
     <Label fx:id="ProsjekLabel" layoutX="335.0" layoutY="502.0" text="Label" />
     <Button id="UkProsjekBttn" layoutX="252.0" layoutY="470.0" mnemonicParsing="false" onAction="#izracunajUkProsjek" text="Ukupni prosjek" />
     <Button layoutX="171.0" layoutY="518.0" mnemonicParsing="false" onAction="#ocjeneIzPredmeta" text="Ocjene iz predmeta" />
     <Label fx:id="IDLabel" layoutX="691.0" layoutY="6.0" text="ID" />
     <ChoiceBox fx:id="choiceBox" layoutX="175.0" layoutY="368.0" prefWidth="189.0">
       <items>
-        <FXCollections fx:factory="observableArrayList">
-
-        </FXCollections>
+        <FXCollections fx:factory="observableArrayList" />
       </items>
     </ChoiceBox>
     <ChoiceBox fx:id="cb" layoutX="175.0" layoutY="433.0" prefWidth="189.0">
       <items>
-        <FXCollections fx:factory="observableArrayList">
-
-        </FXCollections>
+        <FXCollections fx:factory="observableArrayList" />
       </items>
     </ChoiceBox>
-    <TableView layoutX="816.0" layoutY="6.0" prefHeight="446.0" prefWidth="301.0">
+    <TableView fx:id="StudentiTab" layoutX="816.0" layoutY="6.0" onMouseClicked="#odaberiStudent1" prefHeight="446.0" prefWidth="301.0">
       <columns>
         <TableColumn prefWidth="75.0" text="ID" fx:id="IDCol1" />
         <TableColumn prefWidth="75.0" text="Student" fx:id="StudentCol" />
-        <TableColumn prefWidth="75.0" text="Email" fx:id="EmailCol1" />
-        <TableColumn prefWidth="75.0" text="Lozinka" fx:id="LozinkaCol1" />
+        <TableColumn prefWidth="75.0" text="Email" fx:id="EmailCol" />
+        <TableColumn prefWidth="75.0" text="Lozinka" fx:id="LozinkaCol" />
       </columns>
     </TableView>
-    <Button layoutX="633.0" layoutY="416.0" mnemonicParsing="false" prefWidth="153.0" text="Uredi" />
-    <Button layoutX="633.0" layoutY="444.0" mnemonicParsing="false" prefWidth="153.0" text="Obriši" />
-    <Label layoutX="691.0" layoutY="229.0" text="ID" />
+    <Label id="StudentLabel" fx:id="StudentLabel1" layoutX="696.0" layoutY="277.0" text="ID" />
   </children>
 </AnchorPane>

@@ -152,17 +152,16 @@ public class OcjeneModel {
 
             }
 
+            System.out.println("K je " + k);
         }
-        if(k ==0){
-            for(int i = 0;i<brojac;i++)
-                lista.addAll(predmeti[i]);
+        int count = 0;
+        for (String obj : predmeti) {
+            if ( obj != null ) count++;
+        }
+        for (int i = 0;i<count;i++){
+        lista.add(predmeti[i]);
+                }
 
-        }
-        else {
-            for (int i = 0; i <= k; i++) {
-                lista.addAll(predmeti[i]);
-            }
-        }
 
 
 

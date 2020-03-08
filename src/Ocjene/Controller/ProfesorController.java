@@ -2,7 +2,6 @@ package Ocjene.Controller;
 
 import Ocjene.Model.Baza;
 import Ocjene.Model.KorisnikModel;
-import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.scene.control.*;
@@ -39,13 +38,15 @@ public class ProfesorController implements Initializable {
     @FXML
     TextField OcjenaField;
     @FXML
-    TextField StudentField;
-    @FXML
     TextField ImeField;
     @FXML
-    TextField EmailCol;
+    TableColumn EmailCol;
     @FXML
-    TextField LozinkaCol;
+    TableColumn LozinkaCol;
+    @FXML
+    TableColumn IDCol1;
+    @FXML
+    TableColumn StudentCol;
     @FXML
     Button spremi;
     @FXML
@@ -55,8 +56,6 @@ public class ProfesorController implements Initializable {
     @FXML
     Label ProsjekLabel;
     @FXML
-    TextField Predmet;
-    @FXML
     Label IDLabel;
     @FXML
     TableColumn IDCol;
@@ -64,15 +63,25 @@ public class ProfesorController implements Initializable {
     ChoiceBox<String> choiceBox;
     @FXML
     ChoiceBox<String> cb;
-
+    @FXML
+    Label StudentLabel1;
+    @FXML
+    TextField imeField;
+    @FXML
+    TextField EmailField;
+    @FXML
+    TextField LozinkaField;
+    @FXML
+    TableView StudentiTab;
     public static int IDKorisnik = 2;
     public static String imeStudenta;
     OcjeneModel odabraniKontakt;
+    KorisnikModel odabraniStudent;
 
     public void initialize(URL url, ResourceBundle rb) {
     ObservableList <String> data = KorisnikModel.listaStudenata();
         choiceBox.setItems(data);
-
+     
 
         ObservableList<String>Predmeti;
         try {
@@ -82,10 +91,26 @@ public class ProfesorController implements Initializable {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        ObservableList<KorisnikModel> student = null;
+        try {
+            student = KorisnikModel.listaStudenata1();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        IDCol1.setCellValueFactory(new PropertyValueFactory<KorisnikModel, String>("ID"));
+        StudentCol.setCellValueFactory(new PropertyValueFactory<String,String>("korisnicko_ime"));
+        LozinkaCol.setCellValueFactory(new PropertyValueFactory<KorisnikModel, String>("lozinka"));
+        EmailCol.setCellValueFactory(new PropertyValueFactory<KorisnikModel, String>("email"));
 
 
+
+
+        StudentiTab.setItems(student);
 
     }
+
+
+
 
 
 
@@ -120,13 +145,13 @@ public class ProfesorController implements Initializable {
         String Ime = this.ImeField.getText();
         String Email = this.EmailCol.getText();
         String Lozinka = this.LozinkaCol.getText();
-        KorisnikModel novi = new KorisnikModel(Ime, Email,Lozinka);
+        KorisnikModel novi = new KorisnikModel(null,Ime, Email,Lozinka);
         novi.spasi();
         ObservableList <String> data = KorisnikModel.listaStudenata();
         choiceBox.setItems(data);
         ImeField.clear();
-        EmailCol.clear();
-        LozinkaCol.clear();
+        EmailField.clear();
+        LozinkaField.clear();
 
 
     }
@@ -249,6 +274,8 @@ public class ProfesorController implements Initializable {
         this.odabraniKontakt.uredi(IDLabel.getText());
         ObservableList<OcjeneModel> data = OcjeneModel.listaOcjena(IDKorisnik);
         this.OcjeneTab.setItems(data);
+        ObservableList<String> Predmeti = OcjeneModel.listaPredmeta(IDKorisnik);
+        cb.setItems(Predmeti);
     }
     @FXML
     public void brisiKontakt(Event  e) throws SQLException {
@@ -261,6 +288,26 @@ public class ProfesorController implements Initializable {
             PredmetCol.setCellValueFactory(new PropertyValueFactory<OcjeneModel, String>("Predmet"));
             OcjenaCol.setCellValueFactory(new PropertyValueFactory<OcjeneModel, String>("Ocjena"));
             OcjeneTab.setItems(data);
+        }
+    }
+    @FXML
+    public void odaberiStudent1 (Event e) {
+        this.odabraniStudent = (KorisnikModel) this.StudentiTab.getSelectionModel().getSelectedItem();
+        this.StudentLabel1.setText(this.odabraniStudent.getID());
+        this.imeField.setText(this.odabraniStudent.getKorisnickoIme());
+        this.EmailField.setText(this.odabraniStudent.getEmail());
+        this.LozinkaField.setText(this.odabraniStudent.getLozinka());
+    }
+    @FXML
+    public void obrisiStudent(Event  e) throws SQLException {
+        if (this.odabraniStudent != null) {
+            this.odabraniStudent.brisi(StudentLabel.getText());
+            ObservableList<KorisnikModel> data = KorisnikModel.listaStudenata1();
+            IDCol1.setCellValueFactory(new PropertyValueFactory<KorisnikModel, String>("ID"));
+            StudentCol.setCellValueFactory(new PropertyValueFactory<KorisnikModel, String>("korisnicko_ime"));
+            LozinkaCol.setCellValueFactory(new PropertyValueFactory<KorisnikModel, String>("lozinka"));
+            EmailCol.setCellValueFactory(new PropertyValueFactory<KorisnikModel, String>("email"));
+            StudentiTab.setItems(data);
         }
     }
 
