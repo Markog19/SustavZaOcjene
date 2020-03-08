@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Feb 13, 2020 at 05:39 PM
+-- Generation Time: Mar 08, 2020 at 07:19 PM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.4.1
 
@@ -42,20 +42,9 @@ CREATE TABLE `korisnik` (
 
 INSERT INTO `korisnik` (`ID`, `korisnicko_ime`, `lozinka`, `email`, `isAdmin`) VALUES
 (1, 'Marko', 'Marko', 'saddas@gmail.com', 1),
-(2, 'Ucenik', 'Ucenik', 'fsdsa', 0);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `LogiraniKorisnik`
---
-
-CREATE TABLE `LogiraniKorisnik` (
-  `ID` int(50) NOT NULL,
-  `IDKorisnik` int(50) NOT NULL,
-  `korisnicko ime` varchar(50) NOT NULL,
-  `lozinka` varchar(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+(2, 'Ucenik', 'Ucenik', 'fsdsa', 0),
+(6, 'Ivan', 'fafas', '1234567', 0),
+(7, '', 'Email', 'Lozinka', 0);
 
 -- --------------------------------------------------------
 
@@ -66,6 +55,7 @@ CREATE TABLE `LogiraniKorisnik` (
 CREATE TABLE `ocjene` (
   `ID` int(11) NOT NULL,
   `Datum` varchar(50) NOT NULL,
+  `Ime` varchar(50) NOT NULL,
   `Profesor` varchar(50) NOT NULL,
   `Predmet` varchar(50) NOT NULL,
   `Ocjena` varchar(50) NOT NULL,
@@ -76,9 +66,16 @@ CREATE TABLE `ocjene` (
 -- Dumping data for table `ocjene`
 --
 
-INSERT INTO `ocjene` (`ID`, `Datum`, `Profesor`, `Predmet`, `Ocjena`, `IDKorisnik`) VALUES
-(6, 'sdsd', 'adsa', 'asddasd', '2', 2),
-(7, 'dsada', 'dasd', 'dsadas', '3', 1);
+INSERT INTO `ocjene` (`ID`, `Datum`, `Ime`, `Profesor`, `Predmet`, `Ocjena`, `IDKorisnik`) VALUES
+(38, '21.1.2020.', 'Ucenik', 'Marko', 'Matematika', '4', 2),
+(40, '21.1.2020.', 'Ucenik', 'Marko', 'Povijest', '1', 2),
+(42, '22.1.2020', 'Ucenik', 'Marko', 'Povijest', '3', 2),
+(43, 'fasf', 'fasfa', 'fasfa', 'dasda', '3', 6),
+(44, '22.1.2', 'Ivan', 'Marko', 'Matematika', '3', 6),
+(45, '22.1.2', 'Ivan', 'Marko', 'Engleski', '3', 6),
+(46, '23.1.2020', 'Ivan', 'Marko', 'Matematika', '3', 6),
+(47, '23.1.2020', 'Ivan', 'Marko', 'Hrvatski', '3', 6),
+(48, '23.1.2020', 'Ivan', 'Marko', 'Fizika', '3', 6);
 
 --
 -- Indexes for dumped tables
@@ -88,12 +85,6 @@ INSERT INTO `ocjene` (`ID`, `Datum`, `Profesor`, `Predmet`, `Ocjena`, `IDKorisni
 -- Indexes for table `korisnik`
 --
 ALTER TABLE `korisnik`
-  ADD PRIMARY KEY (`ID`);
-
---
--- Indexes for table `LogiraniKorisnik`
---
-ALTER TABLE `LogiraniKorisnik`
   ADD PRIMARY KEY (`ID`);
 
 --
@@ -110,19 +101,13 @@ ALTER TABLE `ocjene`
 -- AUTO_INCREMENT for table `korisnik`
 --
 ALTER TABLE `korisnik`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
-
---
--- AUTO_INCREMENT for table `LogiraniKorisnik`
---
-ALTER TABLE `LogiraniKorisnik`
-  MODIFY `ID` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=51;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `ocjene`
 --
 ALTER TABLE `ocjene`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=49;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
