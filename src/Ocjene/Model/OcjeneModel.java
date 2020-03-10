@@ -14,7 +14,9 @@ import javax.security.auth.login.LoginContext;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.HashSet;
 import java.util.PropertyResourceBundle;
+import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -72,8 +74,7 @@ public class OcjeneModel {
     public String getIme() {
         return Ime.get();
     }
-    public static int k = 0;
-
+    public static int setSize;
     public static ObservableList<OcjeneModel> listaOcjena (int ID) throws SQLException {
         ObservableList<OcjeneModel> lista = FXCollections.observableArrayList();
         Baza DB = new Baza();
@@ -115,58 +116,31 @@ public class OcjeneModel {
         as.setInt(1,ID);
         ResultSet a = as.executeQuery();
         a.next();
-         int vel = a.getInt("rowcount");
+        int vel = a.getInt("rowcount");
         PreparedStatement ad = DB.exec("SELECT * FROM ocjene WHERE IDKorisnik = ?");
         ad.setInt(1, ID);
-
         ResultSet rs = ad.executeQuery();
-
-        String[] predmeti = new String[vel+1];
-        int brojac = 0;
-        k = 0;
+        Set<String> hash_Set = new HashSet<String>();
         try {
             while (rs.next()) {
-                    predmeti[brojac] = rs.getString("Predmet");
-                    brojac++;
-
+                hash_Set.add(rs.getString("Predmet"));
             }
 
         } catch (SQLException ex) {
             System.out.println("Nastala je greška prilikom iteriranja: " + ex.getMessage());
         }
-        System.out.println(brojac);
-        if(brojac == 1){
-            lista.add(predmeti[brojac]);
-        }
-        else{
-            for(int i = 0;i<brojac-1;i++) {
+        setSize = hash_Set.size();
+       lista.addAll(hash_Set);
 
-                for (int j = i + 1; j < brojac; j++) {
 
-                    if (predmeti[i].equals(predmeti[j])) {
-                        predmeti[j] = predmeti[j+1];
-                        k++;
-                    }
 
-                }
-
-            }
-
-            System.out.println("K je " + k);
-        }
-        int count = 0;
-        for (String obj : predmeti) {
-            if ( obj != null ) count++;
-        }
-        for (int i = 0;i<count;i++){
-        lista.add(predmeti[i]);
-                }
 
 
 
 
         return lista;
     }
+
     public void spasi () {
         Baza DB = new Baza();
         PreparedStatement insert = DB.exec("INSERT INTO ocjene VALUES(null,?,?,?,?,?,?)");

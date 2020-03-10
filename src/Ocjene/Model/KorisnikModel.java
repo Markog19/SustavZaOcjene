@@ -30,8 +30,21 @@ public class KorisnikModel {
         return korisnickoIme.get();
     }
 
-    public SimpleStringProperty korisnickoImeProperty() {
-        return korisnickoIme;
+
+    public void setID(String ID) {
+        this.ID.set(ID);
+    }
+
+    public void setKorisnickoIme(String korisnickoIme) {
+        this.korisnickoIme.set(korisnickoIme);
+    }
+
+    public void setEmail(String email) {
+        this.email.set(email);
+    }
+
+    public void setLozinka(String lozinka) {
+        this.lozinka.set(lozinka);
     }
 
     public String getEmail() {
@@ -108,6 +121,19 @@ public class KorisnikModel {
             as.setString(1,ID);
             as.executeUpdate();
 
+        } catch (SQLException ex) {
+            System.out.println("Greška prilikom spasavanja korisnika u bazu:" + ex.getMessage());
+        }
+    }
+    public void uredi (String ID) {
+        try {
+            Baza DB = new Baza();
+            PreparedStatement upit = DB.exec("UPDATE korisnik SET  korisnicko_ime=?, lozinka=?, email=? WHERE ID = ?");
+            upit.setString(1, this.getKorisnickoIme());
+            upit.setString(2, this.getLozinka());
+            upit.setString(3, this.getEmail());
+            upit.setString(4, ID);
+            upit.executeUpdate();
         } catch (SQLException ex) {
             System.out.println("Greška prilikom spasavanja korisnika u bazu:" + ex.getMessage());
         }

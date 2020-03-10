@@ -30,19 +30,19 @@
         <TextField fx:id="PredmetField" prefWidth="200.0" VBox.margin="$x1" />
         <TextField fx:id="OcjenaField" prefWidth="200.0" VBox.margin="$x1" />
         <Button fx:id="spremiBtn" mnemonicParsing="false" onAction="#dodajOcjenu" prefWidth="153.0" text="Spremi" />
-        <Button mnemonicParsing="false" onAction="#urediKontakt" prefWidth="153.0" text="Uredi">
+        <Button mnemonicParsing="false" onAction="#urediOcjenu" prefWidth="153.0" text="Uredi">
           <VBox.margin>
             <Insets bottom="10.0" top="10.0" />
           </VBox.margin>
         </Button>
-        <Button mnemonicParsing="false" onAction="#brisiKontakt" onMouseClicked="#odaberiKorisnika" prefWidth="150.0" text="Obrisi Ocjenu" />
+        <Button mnemonicParsing="false" onAction="#obrisiOcjenu" onMouseClicked="#odaberiKorisnika" prefWidth="150.0" text="Obrisi Ocjenu" />
       </children>
     </VBox>
     <Text layoutX="583.0" layoutY="45.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Datum" />
     <Text layoutX="583.0" layoutY="87.0" scaleX="1.0" scaleY="1.0000066081567769" strokeType="OUTSIDE" strokeWidth="0.0" text="Predmet" />
     <Text layoutX="583.0" layoutY="131.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ocjena" />
     <Text layoutX="37.0" layoutY="384.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Izaberite studenta" />
-    <VBox layoutX="633.0" layoutY="293.0" prefHeight="230.0" prefWidth="153.0">
+    <VBox layoutX="634.0" layoutY="293.0" prefHeight="230.0" prefWidth="153.0">
       <children>
         <TextField fx:id="ImeField" prefWidth="200.0">
           <VBox.margin>
@@ -56,7 +56,7 @@
             <Insets top="10.0" fx:id="x3" />
           </VBox.margin>
         </Button>
-        <Button mnemonicParsing="false" prefWidth="153.0" text="Uredi" VBox.margin="$x3" />
+        <Button mnemonicParsing="false" onAction="#urediStudent" prefWidth="153.0" text="Uredi" VBox.margin="$x3" />
         <Button mnemonicParsing="false" onAction="#obrisiStudent" prefWidth="153.0" text="Obriši" VBox.margin="$x3" />
       </children>
     </VBox>
@@ -85,10 +85,10 @@
       <columns>
         <TableColumn prefWidth="75.0" text="ID" fx:id="IDCol1" />
         <TableColumn prefWidth="75.0" text="Student" fx:id="StudentCol" />
-        <TableColumn prefWidth="75.0" text="Email" fx:id="EmailCol" />
         <TableColumn prefWidth="75.0" text="Lozinka" fx:id="LozinkaCol" />
+        <TableColumn prefWidth="75.0" text="Email" fx:id="EmailCol" />
       </columns>
     </TableView>
-    <Label id="StudentLabel" fx:id="StudentLabel1" layoutX="696.0" layoutY="277.0" text="ID" />
+    <Label id="StudentLabel" fx:id="StudentLabel1" layoutX="697.0" layoutY="277.0" text="ID" />
   </children>
 </AnchorPane>
