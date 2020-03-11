@@ -13,14 +13,15 @@ import java.util.logging.Logger;
 public class KorisnikModel {
     SimpleStringProperty ID = new SimpleStringProperty();
     SimpleStringProperty korisnickoIme = new SimpleStringProperty();
-    SimpleStringProperty email = new SimpleStringProperty();
     SimpleStringProperty lozinka = new SimpleStringProperty();
+    SimpleStringProperty email = new SimpleStringProperty();
 
-    public KorisnikModel(String ID, String korisnickoIme, String email, String lozinka){
+    public KorisnikModel(String ID, String korisnickoIme, String lozinka, String email){
         this.ID = new SimpleStringProperty(ID);
         this.korisnickoIme = new SimpleStringProperty(korisnickoIme);
-        this.email = new SimpleStringProperty(email);
         this.lozinka = new SimpleStringProperty(lozinka);
+        this.email = new SimpleStringProperty(email);
+
     }
     public String getID() {
         return ID.get();

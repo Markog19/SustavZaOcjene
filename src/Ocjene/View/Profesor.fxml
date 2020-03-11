@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="600.0" prefWidth="1154.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="Ocjene.Controller.ProfesorController">
+<AnchorPane prefHeight="600.0" prefWidth="1120.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="Ocjene.Controller.ProfesorController">
   <children>
     <TableView fx:id="OcjeneTab" layoutX="0.0" layoutY="6.0" onMouseClicked="#odaberiKorisnika" prefHeight="359.0" prefWidth="495.0">
       <columns>
@@ -36,6 +36,7 @@
           </VBox.margin>
         </Button>
         <Button mnemonicParsing="false" onAction="#obrisiOcjenu" onMouseClicked="#odaberiKorisnika" prefWidth="150.0" text="Obrisi Ocjenu" />
+        <Button mnemonicParsing="false" text="Button" />
       </children>
     </VBox>
     <Text layoutX="583.0" layoutY="45.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Datum" />
@@ -44,7 +45,7 @@
     <Text layoutX="37.0" layoutY="384.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Izaberite studenta" />
     <VBox layoutX="634.0" layoutY="293.0" prefHeight="230.0" prefWidth="153.0">
       <children>
-        <TextField fx:id="ImeField" prefWidth="200.0">
+        <TextField fx:id="ImeField" prefHeight="-1.0" prefWidth="113.0">
           <VBox.margin>
             <Insets bottom="20.0" left="20.0" right="20.0" top="10.0" fx:id="x2" />
           </VBox.margin>
@@ -60,8 +61,8 @@
         <Button mnemonicParsing="false" onAction="#obrisiStudent" prefWidth="153.0" text="Obriši" VBox.margin="$x3" />
       </children>
     </VBox>
-    <Text layoutX="596.0" layoutY="312.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ime" />
-    <Text layoutX="596.0" layoutY="361.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Email" />
+    <Text layoutX="596.0" layoutY="312.0" scaleX="1.0" scaleY="1.0000066081567769" strokeType="OUTSIDE" strokeWidth="0.0" text="Ime" />
+    <Text layoutX="593.0" layoutY="359.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Email" />
     <Text layoutX="594.0" layoutY="404.0" scaleX="0.9155201234409155" scaleY="1.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Lozinka" />
     <Label fx:id="StudentLabel" layoutX="335.0" layoutY="400.0" text="Label" />
     <Text layoutX="37.0" layoutY="448.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Upišite predmet" />
@@ -69,7 +70,7 @@
     <Button fx:id="izaberiButton" layoutX="171.0" layoutY="396.0" mnemonicParsing="false" onAction="#odaberiStudent" text="Izaberi" />
     <Label fx:id="ProsjekLabel" layoutX="335.0" layoutY="502.0" text="Label" />
     <Button id="UkProsjekBttn" layoutX="252.0" layoutY="470.0" mnemonicParsing="false" onAction="#izracunajUkProsjek" text="Ukupni prosjek" />
-    <Button layoutX="171.0" layoutY="518.0" mnemonicParsing="false" onAction="#ocjeneIzPredmeta" text="Ocjene iz predmeta" />
+    <Button layoutX="171.0" layoutY="518.0" mnemonicParsing="false" onAction="#ocjeneIzPredmeta" prefWidth="104.5966796875" text="Filter Ocjene" />
     <Label fx:id="IDLabel" layoutX="691.0" layoutY="6.0" text="ID" />
     <ChoiceBox fx:id="choiceBox" layoutX="175.0" layoutY="368.0" prefWidth="189.0">
       <items>
@@ -90,5 +91,6 @@
       </columns>
     </TableView>
     <Label id="StudentLabel" fx:id="StudentLabel1" layoutX="697.0" layoutY="277.0" text="ID" />
+    <Button layoutX="276.0" layoutY="518.0" mnemonicParsing="false" onAction="#sveOcjene" text="Sve Ocjene" />
   </children>
 </AnchorPane>

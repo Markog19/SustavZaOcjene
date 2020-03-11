@@ -112,15 +112,10 @@ public class OcjeneModel {
     public static ObservableList<String> listaPredmeta (int ID) throws SQLException {
         ObservableList<String> lista = FXCollections.observableArrayList();
         Baza DB = new Baza();
-        PreparedStatement as = DB.exec("SELECT COUNT(*) AS rowcount FROM ocjene WHERE IDKorisnik = ?");
-        as.setInt(1,ID);
-        ResultSet a = as.executeQuery();
-        a.next();
-        int vel = a.getInt("rowcount");
         PreparedStatement ad = DB.exec("SELECT * FROM ocjene WHERE IDKorisnik = ?");
         ad.setInt(1, ID);
         ResultSet rs = ad.executeQuery();
-        Set<String> hash_Set = new HashSet<String>();
+        Set<String> hash_Set = new HashSet<>();
         try {
             while (rs.next()) {
                 hash_Set.add(rs.getString("Predmet"));

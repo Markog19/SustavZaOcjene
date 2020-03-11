@@ -299,8 +299,8 @@ public class ProfesorController implements Initializable {
         this.odabraniStudent = (KorisnikModel) this.StudentiTab.getSelectionModel().getSelectedItem();
         this.StudentLabel1.setText(this.odabraniStudent.getID());
         this.ImeField.setText(this.odabraniStudent.getKorisnickoIme());
-        this.EmailField.setText(this.odabraniStudent.getEmail());
         this.LozinkaField.setText(this.odabraniStudent.getLozinka());
+        this.EmailField.setText(this.odabraniStudent.getEmail());
     }
 
     @FXML
@@ -337,6 +337,10 @@ public class ProfesorController implements Initializable {
         StudentiTab.setItems(student);
 
 
+    }
+    @FXML
+    public void sveOcjene() throws SQLException {
+       odaberiStudent(null);
     }
 }
 

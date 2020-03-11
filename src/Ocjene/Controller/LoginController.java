@@ -83,14 +83,14 @@ public class LoginController  implements Initializable {
                     ResultSet rs = ps.executeQuery();
                     while (rs.next()) {
                         int id = rs.getInt("isAdmin");
-                        LoginController.ID = rs.getInt("ID");
+                        ID = rs.getInt("ID");
                         if (id == 1) {
                             Profesor = kime;
                             Parent root;
                             root = FXMLLoader.load(getClass().getClassLoader().getResource("Ocjene/View/Profesor.fxml"));
                             Stage stage = new Stage();
                             stage.setTitle("Prikaz studenta");
-                            stage.setScene(new Scene(root, 750, 600));
+                            stage.setScene(new Scene(root, 1120, 600));
                             stage.show();
                         } if(id == 0) {
                             Parent root;

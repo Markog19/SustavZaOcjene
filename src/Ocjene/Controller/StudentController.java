@@ -7,10 +7,7 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Label;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 
 import java.net.URL;
@@ -37,6 +34,8 @@ public class StudentController implements Initializable {
     Label ProsjekLabel;
     @FXML
     TableColumn IDCol;
+    @FXML
+    ChoiceBox<String> cb;
 
     public void initialize(URL url, ResourceBundle rb ){
 
@@ -53,11 +52,22 @@ public class StudentController implements Initializable {
         PredmetCol.setCellValueFactory(new PropertyValueFactory<OcjeneModel, String>("Predmet"));
         OcjenaCol.setCellValueFactory(new PropertyValueFactory<OcjeneModel, String>("Ocjena"));
         OcjeneTab.setItems(data);
+        ObservableList<String> Predmeti;
+
+        try {
+            Predmeti = OcjeneModel.listaPredmeta(LoginController.ID);
+            System.out.println(Predmeti.isEmpty());
+            cb.getItems().setAll(Predmeti);
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        ;
     }
 
     @FXML
     public void izracunajProsjekPredmet(ActionEvent e) throws SQLException {
-        String Predmet = this.PredmetField.getText();
+        String Predmet = this.cb.getValue();
         Baza DB = new Baza();;
         PreparedStatement as = DB.exec("SELECT * FROM ocjene WHERE Predmet = ? AND IDKorisnik= ?");
         as.setString(1,Predmet);
@@ -99,21 +109,37 @@ public class StudentController implements Initializable {
     }
     @FXML
     public void izracunajUkProsjek(ActionEvent e) throws SQLException {
-        String listaPredmeta[] = new String[]{"Matematika","Povijest"};
+        String listaPredmeta[] = OcjeneModel.listaPredmeta(LoginController.ID).toArray(new String[OcjeneModel.setSize]);
         int zbroj = 0;
-        for(int i = 0;i<listaPredmeta.length;i++){
-            zbroj = zbroj + izracunajProsjek(e,listaPredmeta[i]);
+        for (int i = 0; i < listaPredmeta.length; i++) {
+            zbroj = zbroj + izracunajProsjek(null, listaPredmeta[i]);
         }
         float prosjek;
-        prosjek = (float) zbroj/listaPredmeta.length;
+        prosjek = (float) zbroj / OcjeneModel.setSize;
         String proText = "Ukupni prosjek je " + prosjek;
         ProsjekLabel.setText(proText);
 
     }
+    @FXML
+    public void filterPredmete() throws SQLException {
+        String Predmet = this.cb.getValue();
+        ObservableList<OcjeneModel> data = OcjeneModel.listaOcjena(LoginController.ID, Predmet);
+        IDCol.setCellValueFactory(new PropertyValueFactory<OcjeneModel, String>("ID"));
+        DatumCol.setCellValueFactory(new PropertyValueFactory<OcjeneModel,String>("Datum"));
+        ProfesorCol.setCellValueFactory(new PropertyValueFactory<OcjeneModel, String>("Profesor"));
+        PredmetCol.setCellValueFactory(new PropertyValueFactory<OcjeneModel, String>("Predmet"));
+        OcjenaCol.setCellValueFactory(new PropertyValueFactory<OcjeneModel, String>("Ocjena"));
+        OcjeneTab.setItems(data);
+    }
+    @FXML
+    public void sveOcjene(){
+        initialize(null,null);
+    }
+    }
 
 
 
-}
+
 
 
 
