@@ -36,7 +36,6 @@
           </VBox.margin>
         </Button>
         <Button mnemonicParsing="false" onAction="#obrisiOcjenu" onMouseClicked="#odaberiKorisnika" prefWidth="150.0" text="Obrisi Ocjenu" />
-        <Button mnemonicParsing="false" text="Button" />
       </children>
     </VBox>
     <Text layoutX="583.0" layoutY="45.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Datum" />

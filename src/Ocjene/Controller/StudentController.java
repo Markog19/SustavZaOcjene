@@ -56,7 +56,6 @@ public class StudentController implements Initializable {
 
         try {
             Predmeti = OcjeneModel.listaPredmeta(LoginController.ID);
-            System.out.println(Predmeti.isEmpty());
             cb.getItems().setAll(Predmeti);
 
         } catch (SQLException e) {

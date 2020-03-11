@@ -124,6 +124,7 @@ public class OcjeneModel {
         } catch (SQLException ex) {
             System.out.println("Nastala je greška prilikom iteriranja: " + ex.getMessage());
         }
+
         setSize = hash_Set.size();
        lista.addAll(hash_Set);
 

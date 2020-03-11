@@ -176,7 +176,7 @@ public class ProfesorController implements Initializable {
                 OcjenaCol.setCellValueFactory(new PropertyValueFactory<OcjeneModel, String>("Ocjena"));
                 OcjeneTab.setItems(data);
                 ObservableList<String> Predmeti = OcjeneModel.listaPredmeta(IDKorisnik);
-                cb.setItems(Predmeti);
+                cb.getItems().setAll(Predmeti);
 
             }
             ;
