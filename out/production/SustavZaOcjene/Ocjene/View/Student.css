@@ -1,0 +1,71 @@
+.background {
+     -fx-background-image: url("background.jpg");
+         -fx-background-repeat: stretch;
+         -fx-background-size: 100% 100%;
+         -fx-background-position: left top;
+}
+.label {
+    -fx-font-size:12pt;
+    -fx-font-family:"Segoe UI Light";
+    -fx-text-fill:#FFF;
+}
+.text-input {
+    -fx-background-color:white;
+    -fx-text-fill:black;
+    -fx-font-family:"Segoe UI", Helvetica, Arial, sans-serif;
+    -fx-font-size:12pt;
+    -fx-border-color:white;
+    -fx-border-radius:2;
+}
+.text-input:focused {
+    -fx-border-color:#FFF;
+    -fx-border-width:0 0 1px 0;
+}
+
+.label-header {
+    -fx-font-size:32pt;
+    -fx-font-family:"Segoe UI Light";
+    -fx-text-fill:#FFF;
+    -fx-opacity:1;
+}
+
+.button {
+    -fx-padding:5 22 5 22;
+    -fx-border-color:#e2e2e2;
+    -fx-border-width:2;
+    -fx-background-radius:0;
+    -fx-background-color:#1d1d1d;
+    -fx-font-family:"Segoe UI", Helvetica, Arial, sans-serif;
+    -fx-font-size:12pt;
+    -fx-text-fill:#d8d8d8;
+    -fx-background-insets:0 0 0 0 0 1, 2;
+    -fx-border-radius:5px;
+}
+.button:hover {
+    -fx-background-color:#3a3a3a;
+}
+.button:pressed,.button:default:hover:pressed {
+    -fx-background-color:#FFF;
+    -fx-text-fill:#1d1d1d;
+}
+.button:focused {
+    -fx-border-color:white, #FFF;
+    -fx-border-width:1, 1;
+    -fx-border-style:solid, segments(1,1);
+    -fx-border-radius:0 0;
+    -fx-border-insets:1 1 1 1, 0;
+}
+.choice-box .context-menu { -fx-background-color: black; }
+// Focused item background color in the list
+.choice-box .menu-item:focused { -fx-background-color: orange; }
+// Text color of non-focused items in the list
+.choice-box .menu-item > .label { -fx-text-fill: white; }
+// Text color of focused item in the list
+.choice-box .menu-item:focused > .label { -fx-text-fill: black; }
+
+.choice-box {
+  -fx-background-color: grey;
+  -fx-text-fill: black;
+}
+.choice-box > .label { -fx-text-fill: white; }
+
