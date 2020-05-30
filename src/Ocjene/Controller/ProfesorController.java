@@ -260,7 +260,6 @@ public class ProfesorController implements Initializable {
     @FXML
     public void odaberiKorisnika(Event e) {
         this.odabraniKontakt = (OcjeneModel) this.OcjeneTab.getSelectionModel().getSelectedItem();
-        this.IDLabel.setText(this.odabraniKontakt.getID());
         this.DatumField.setText(this.odabraniKontakt.getDatum());
         this.PredmetField.setText(this.odabraniKontakt.getPredmet());
         this.OcjenaField.setText(this.odabraniKontakt.getOcjena());
@@ -292,6 +291,9 @@ public class ProfesorController implements Initializable {
             ObservableList<String> Predmeti = OcjeneModel.listaPredmeta(IDKorisnik);
             cb.setItems(Predmeti);
         }
+        DatumField.clear();
+        PredmetField.clear();
+        OcjenaField.clear();
     }
 
     @FXML

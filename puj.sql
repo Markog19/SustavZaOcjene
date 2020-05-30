@@ -1,14 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.1
+-- version 5.0.2
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost
--- Generation Time: Mar 08, 2020 at 07:19 PM
+-- Host: 127.0.0.1
+-- Generation Time: May 30, 2020 at 08:15 PM
 -- Server version: 10.4.11-MariaDB
--- PHP Version: 7.4.1
+-- PHP Version: 7.4.5
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -43,8 +42,7 @@ CREATE TABLE `korisnik` (
 INSERT INTO `korisnik` (`ID`, `korisnicko_ime`, `lozinka`, `email`, `isAdmin`) VALUES
 (1, 'Marko', 'Marko', 'saddas@gmail.com', 1),
 (2, 'Ucenik', 'Ucenik', 'fsdsa', 0),
-(6, 'Ivan', 'fafas', '1234567', 0),
-(7, '', 'Email', 'Lozinka', 0);
+(6, 'Ivan', 'fafas', '1', 0);
 
 -- --------------------------------------------------------
 
@@ -68,14 +66,14 @@ CREATE TABLE `ocjene` (
 
 INSERT INTO `ocjene` (`ID`, `Datum`, `Ime`, `Profesor`, `Predmet`, `Ocjena`, `IDKorisnik`) VALUES
 (38, '21.1.2020.', 'Ucenik', 'Marko', 'Matematika', '4', 2),
-(40, '21.1.2020.', 'Ucenik', 'Marko', 'Povijest', '1', 2),
 (42, '22.1.2020', 'Ucenik', 'Marko', 'Povijest', '3', 2),
-(43, 'fasf', 'fasfa', 'fasfa', 'dasda', '3', 6),
 (44, '22.1.2', 'Ivan', 'Marko', 'Matematika', '3', 6),
 (45, '22.1.2', 'Ivan', 'Marko', 'Engleski', '3', 6),
 (46, '23.1.2020', 'Ivan', 'Marko', 'Matematika', '3', 6),
 (47, '23.1.2020', 'Ivan', 'Marko', 'Hrvatski', '3', 6),
-(48, '23.1.2020', 'Ivan', 'Marko', 'Fizika', '3', 6);
+(48, '23.1.2020', 'Ivan', 'Marko', 'Fizika', '3', 6),
+(50, '21.1.2020.', 'Ucenik', 'Marko', 'Matematika', '3', 2),
+(51, '22.1.2020', 'Ucenik', 'Marko', 'Povijest', '3', 2);
 
 --
 -- Indexes for dumped tables
@@ -91,7 +89,8 @@ ALTER TABLE `korisnik`
 -- Indexes for table `ocjene`
 --
 ALTER TABLE `ocjene`
-  ADD PRIMARY KEY (`ID`);
+  ADD PRIMARY KEY (`ID`),
+  ADD KEY `IDKorisnik` (`IDKorisnik`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -107,7 +106,7 @@ ALTER TABLE `korisnik`
 -- AUTO_INCREMENT for table `ocjene`
 --
 ALTER TABLE `ocjene`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=49;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=52;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
